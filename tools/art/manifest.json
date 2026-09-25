@@ -1,0 +1,347 @@
+{
+ "q": 0.82,
+ "jobs": [
+  {
+   "kind": "scene",
+   "id": "room",
+   "key": "room_d",
+   "variant": {},
+   "out": "assets/scenes/room_d.webp",
+   "w": 1920,
+   "h": 1080
+  },
+  {
+   "kind": "scene",
+   "id": "room",
+   "key": "room_n",
+   "variant": {
+    "night": true
+   },
+   "out": "assets/scenes/room_n.webp",
+   "w": 1920,
+   "h": 1080
+  },
+  {
+   "kind": "scene",
+   "id": "hall",
+   "key": "hall_d",
+   "variant": {},
+   "out": "assets/scenes/hall_d.webp",
+   "w": 1920,
+   "h": 1080
+  },
+  {
+   "kind": "scene",
+   "id": "hall",
+   "key": "hall_n",
+   "variant": {
+    "night": true
+   },
+   "out": "assets/scenes/hall_n.webp",
+   "w": 1920,
+   "h": 1080
+  },
+  {
+   "kind": "scene",
+   "id": "backyard",
+   "key": "backyard_d",
+   "variant": {},
+   "out": "assets/scenes/backyard_d.webp",
+   "w": 1920,
+   "h": 1080
+  },
+  {
+   "kind": "scene",
+   "id": "backyard",
+   "key": "backyard_n",
+   "variant": {
+    "night": true
+   },
+   "out": "assets/scenes/backyard_n.webp",
+   "w": 1920,
+   "h": 1080
+  },
+  {
+   "kind": "scene",
+   "id": "quay",
+   "key": "quay_d",
+   "variant": {},
+   "out": "assets/scenes/quay_d.webp",
+   "w": 1920,
+   "h": 1080
+  },
+  {
+   "kind": "scene",
+   "id": "quay",
+   "key": "quay_n",
+   "variant": {
+    "night": true
+   },
+   "out": "assets/scenes/quay_n.webp",
+   "w": 1920,
+   "h": 1080
+  },
+  {
+   "kind": "scene",
+   "id": "hotel",
+   "key": "hotel_d",
+   "variant": {},
+   "out": "assets/scenes/hotel_d.webp",
+   "w": 1920,
+   "h": 1080
+  },
+  {
+   "kind": "scene",
+   "id": "hotel",
+   "key": "hotel_n",
+   "variant": {
+    "night": true
+   },
+   "out": "assets/scenes/hotel_n.webp",
+   "w": 1920,
+   "h": 1080
+  },
+  {
+   "kind": "scene",
+   "id": "room305",
+   "key": "room305_d",
+   "variant": {},
+   "out": "assets/scenes/room305_d.webp",
+   "w": 1920,
+   "h": 1080
+  },
+  {
+   "kind": "scene",
+   "id": "room305",
+   "key": "room305_n",
+   "variant": {
+    "night": true
+   },
+   "out": "assets/scenes/room305_n.webp",
+   "w": 1920,
+   "h": 1080
+  },
+  {
+   "kind": "scene",
+   "id": "church",
+   "key": "church_d",
+   "variant": {},
+   "out": "assets/scenes/church_d.webp",
+   "w": 1920,
+   "h": 1080
+  },
+  {
+   "kind": "scene",
+   "id": "church",
+   "key": "church_n",
+   "variant": {
+    "night": true
+   },
+   "out": "assets/scenes/church_n.webp",
+   "w": 1920,
+   "h": 1080
+  },
+  {
+   "kind": "scene",
+   "id": "honeycomb",
+   "key": "honeycomb_d",
+   "variant": {},
+   "out": "assets/scenes/honeycomb_d.webp",
+   "w": 1920,
+   "h": 1080
+  },
+  {
+   "kind": "scene",
+   "id": "honeycomb",
+   "key": "honeycomb_n",
+   "variant": {
+    "night": true
+   },
+   "out": "assets/scenes/honeycomb_n.webp",
+   "w": 1920,
+   "h": 1080
+  },
+  {
+   "kind": "scene",
+   "id": "roof",
+   "key": "roof_d",
+   "variant": {},
+   "out": "assets/scenes/roof_d.webp",
+   "w": 1920,
+   "h": 1080
+  },
+  {
+   "kind": "scene",
+   "id": "roof",
+   "key": "roof_n",
+   "variant": {
+    "night": true
+   },
+   "out": "assets/scenes/roof_n.webp",
+   "w": 1920,
+   "h": 1080
+  },
+  {
+   "kind": "scene",
+   "id": "flats",
+   "key": "flats_d",
+   "variant": {},
+   "out": "assets/scenes/flats_d.webp",
+   "w": 1920,
+   "h": 1080
+  },
+  {
+   "kind": "scene",
+   "id": "flats",
+   "key": "flats_n",
+   "variant": {
+    "night": true
+   },
+   "out": "assets/scenes/flats_n.webp",
+   "w": 1920,
+   "h": 1080
+  },
+  {
+   "kind": "scene",
+   "id": "fort",
+   "key": "fort_d",
+   "variant": {},
+   "out": "assets/scenes/fort_d.webp",
+   "w": 1920,
+   "h": 1080
+  },
+  {
+   "kind": "scene",
+   "id": "fort",
+   "key": "fort_n",
+   "variant": {
+    "night": true
+   },
+   "out": "assets/scenes/fort_n.webp",
+   "w": 1920,
+   "h": 1080
+  },
+  {
+   "kind": "scene",
+   "id": "crane",
+   "key": "crane_d",
+   "variant": {},
+   "out": "assets/scenes/crane_d.webp",
+   "w": 1920,
+   "h": 1080
+  },
+  {
+   "kind": "scene",
+   "id": "crane",
+   "key": "crane_n",
+   "variant": {
+    "night": true
+   },
+   "out": "assets/scenes/crane_n.webp",
+   "w": 1920,
+   "h": 1080
+  },
+  {
+   "kind": "scene",
+   "id": "crane",
+   "key": "crane_db",
+   "variant": {
+    "body": true
+   },
+   "out": "assets/scenes/crane_db.webp",
+   "w": 1920,
+   "h": 1080
+  },
+  {
+   "kind": "scene",
+   "id": "crane",
+   "key": "crane_nb",
+   "variant": {
+    "night": true,
+    "body": true
+   },
+   "out": "assets/scenes/crane_nb.webp",
+   "w": 1920,
+   "h": 1080
+  },
+  {
+   "kind": "scene",
+   "id": "breakwater",
+   "key": "breakwater_d",
+   "variant": {},
+   "out": "assets/scenes/breakwater_d.webp",
+   "w": 1920,
+   "h": 1080
+  },
+  {
+   "kind": "scene",
+   "id": "breakwater",
+   "key": "breakwater_n",
+   "variant": {
+    "night": true
+   },
+   "out": "assets/scenes/breakwater_n.webp",
+   "w": 1920,
+   "h": 1080
+  },
+  {
+   "kind": "scene",
+   "id": "breakwater",
+   "key": "breakwater_dl",
+   "variant": {
+    "low": true
+   },
+   "out": "assets/scenes/breakwater_dl.webp",
+   "w": 1920,
+   "h": 1080
+  },
+  {
+   "kind": "scene",
+   "id": "breakwater",
+   "key": "breakwater_nl",
+   "variant": {
+    "night": true,
+    "low": true
+   },
+   "out": "assets/scenes/breakwater_nl.webp",
+   "w": 1920,
+   "h": 1080
+  },
+  {
+   "kind": "scene",
+   "id": "cannery",
+   "key": "cannery",
+   "variant": {},
+   "out": "assets/scenes/cannery.webp",
+   "w": 1920,
+   "h": 1080
+  },
+  {
+   "kind": "scene",
+   "id": "pawn",
+   "key": "pawn",
+   "variant": {},
+   "out": "assets/scenes/pawn.webp",
+   "w": 1920,
+   "h": 1080
+  },
+  {
+   "kind": "scene",
+   "id": "void",
+   "key": "void",
+   "variant": {},
+   "out": "assets/scenes/void.webp",
+   "w": 1920,
+   "h": 1080
+  },
+  {
+   "kind": "scene",
+   "id": "title",
+   "key": "title",
+   "variant": {},
+   "out": "assets/scenes/title.webp",
+   "w": 1920,
+   "h": 1080
+  }
+ ]
+}
