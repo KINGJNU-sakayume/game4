@@ -260,6 +260,7 @@ MATEO: 더 할 말 없어. 알고 싶으면 위원장님한테 가.
 * {!crane4_talk_simon} "4번 크레인 사고에 대해 아시오?" -> simon_crane4
 * {!simon_drank} "……한 잔 줄 수 있소?" -> simon_drink
 * {body_down && !simon_confessed} "닷새 전 새벽 일을 말해 주시오." -> simon_confess
+* {has.sealed_letter && !letter_read} "난로 위 주전자 좀 써도 되겠소?" -> letter_steam
 * {!has.crowbar} "저 구석의 쇠지렛대, 빌려도 되겠소?"
   SIMON: 가져가. 나는 이제 아무것도 안 열 거야.
   ~ item add crowbar

@@ -12,7 +12,7 @@ const warnings = [];
 
 const nodes = C.nodes;
 const isLoc = id => nodes[id] && nodes[id].attrs.location;
-const SPECIAL_VALUES = new Set(['money', 'day', 'hour', 'min', 'time', 'clock', 'abstime', 'health', 'morale', 'healthMax', 'moraleMax', 'level', 'xp', 'points', 'first', 'lowtide', 'night', 'loc', 'archetype', 'signature']);
+const SPECIAL_VALUES = new Set(['money', 'day', 'hour', 'min', 'time', 'clock', 'abstime', 'health', 'morale', 'healthMax', 'moraleMax', 'level', 'xp', 'points', 'first', 'lowtide', 'tideleft', 'tidewait', 'night', 'loc', 'archetype', 'signature']);
 const PREFIX = {
   visits: 'node', seen: 'node', event: 'node',
   has: 'item', wear: 'item', count: 'item',

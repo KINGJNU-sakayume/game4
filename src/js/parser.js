@@ -43,11 +43,12 @@
 
   function parseAttrs(s) {
     const attrs = {};
-    const re = /@([A-Za-z_]\w*)|([A-Za-z_]\w*)=("([^"]*)"|\S+)/g;
+    const re = /@([A-Za-z_]\w*)|([A-Za-z_]\w*)=("([^"]*)"|\S+)|([A-Za-z_]\w*)/g;
     let m;
     while ((m = re.exec(s))) {
       if (m[1]) attrs[m[1]] = true;
-      else attrs[m[2]] = m[4] !== undefined ? m[4] : m[3];
+      else if (m[2]) attrs[m[2]] = m[4] !== undefined ? m[4] : m[3];
+      else attrs[m[5]] = true;
     }
     return attrs;
   }

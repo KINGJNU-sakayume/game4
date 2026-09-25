@@ -186,12 +186,12 @@ ORLA: 옥상? 옥상엔 왜요? 거긴 비둘기 똥하고 물탱크하고 벌�
     ~ cop_boring += 1
   -
   그녀가 손을 뗀다.
-  ~ item add roof_key
+  ~ item add roof_key; roof_key_given = 1
   -> orla_hub
 * {debt <= 100} "빚도 좀 갚았잖소. 믿어 주시오."
   ORLA: 믿음은 외상으로 안 줘요. 하지만 각하는 요즘 조금 믿을 만해졌어요. 조금.
   그녀가 서랍에서 녹슨 열쇠를 꺼내 준다.
-  ~ item add roof_key
+  ~ item add roof_key; roof_key_given = 1
   -> orla_hub
 * [SUGGESTION 10] "마담, 옥상에서 이네스 소식을 찾을 수 있을지도 모르오."
   ?+
@@ -199,7 +199,7 @@ ORLA: 옥상? 옥상엔 왜요? 거긴 비둘기 똥하고 물탱크하고 벌�
     ORLA: 치사한 수를 쓰네요, 각하.
     그녀가 서랍을 연다.
     ORLA: 가져가요. 치사한 수가 먹히는 건, 그게 사실일 때뿐이에요.
-    ~ item add roof_key
+    ~ item add roof_key; roof_key_given = 1
   ?-
     ORLA: 이네스 이름을 협상에 쓰지 마세요. 각하가 뭘 안다고.
 * "그냥 궁금하오."
@@ -264,6 +264,7 @@ ORLA: 각하는 다르네요. 조금.
 * {!has.broom && !has.shoes_pair && !has.shoe_right} "빗자루 좀 빌릴 수 있나?" -> emile_broom
 * {has.jacket_wet && !jacket_drying} "젖은 재킷을 말릴 데가 있을까?" -> emile_jacket
 * {jacket_drying && !has.jacket_velvet} "재킷은 다 말랐나?" -> emile_jacket_back
+* {has.sealed_letter && !letter_read} "부엌 주전자 좀 쓸 수 있을까? 김이 필요해서." -> letter_steam
 * "무슨 책을 읽고 있나?" -> emile_book
 * {!lostfound_done} "분실물 상자 같은 거 있나?" -> emile_lostfound
 * {ines_heard || saw_ines_flyer} "이네스라는 댄서 말이야." -> emile_ines
@@ -480,3 +481,46 @@ EMILE: 그 사람은 매번 언덕 위 호텔에서 택시를 타고 왔어요. 
 ~ emile_id_done = 1
 ~ xp 15
 -> emile_hub
+
+// ───────── 로사의 편지를 김으로 연다 ─────────
+
+=== letter_steam
+{loc == "hall"} 에밀이 당신 손의 봉투를 본다. 붉은 밀랍, 닻 문양. 그의 눈이 조금 커진다. 그리고 아무것도 못 본 척 부엌 문을 열어 준다.
+{loc == "hall"} EMILE: 주전자는 불 위에 있어요. 저는 못 봤어요. 아무것도.
+{loc == "crane"} 시몬의 무쇠 난로 위에서 찌그러진 주전자가 끓고 있다. 시몬은 창밖의 크레인을 보고 있다. 당신이 무엇을 하든 상관없다는 듯이.
+{met_yun} 윤 경위가 당신을 본다. 그녀는 아무 말도 하지 않는다. 대신 돌아서서 문 쪽을 본다. 아무도 오지 않는지.
+{met_yun} YUN: ……저는 이걸 안 본 거예요. 절차상.
+* [INTERFACING 10] 주전자 주둥이에 밀랍을 대고, 천천히 녹인다. -> letter_steam_ok | letter_steam_fail
+* 그만둔다. 남의 편지다.
+  VOLITION: 잘했어. 어떤 문은 열지 않는 게 수사야.
+  -> END
+
+=== letter_steam_ok
+증기가 밀랍을 부드럽게 만든다. 당신은 칼끝으로 밀랍의 가장자리를 들어 올린다. 닻 문양이 깨지지 않고 한 덩어리로 떨어진다. 봉투가 열린다.
+-> letter_contents
+
+=== letter_steam_fail
+증기가 밀랍을 녹인다. 너무 많이. 붉은 밀랍이 흘러내려 봉투에 번진다. 닻 문양이 뭉개진다. 당신은 손가락으로 모양을 되살리려 한다. 지문이 찍힌다.
+INTERFACING: ……이건 티가 날 거야. 받는 사람이 눈이 있다면.
+~ letter_resealed = 1
+-> letter_contents
+
+=== letter_contents
+~ letter_read = 1
+두꺼운 편지지 세 장. 손글씨. 가늘고 곧은 글씨, 한 획도 떨리지 않는다. 뜨개바늘 같은 글씨.
+"할바르-마리스 해운 협상 대표 A. 크루이프 귀하.
+붉은 닻은 다음 세 조건이 받아들여지면 48시간 안에 파업을 끝내고 새 크레인 도입에 반대하지 않겠소.
+하나. 4번 크레인 사망자 여섯 가족에게 가구당 2,000솔도.
+둘. 채용 사무소는 노조가 계속 운영한다. 새 크레인의 기사도 솔레아 사람으로.
+셋. 회사는 보험 청구서에서 토마스 이바라의 이름을 삭제하고, 운전자 과실 주장을 철회한다."
+그리고 세 번째 장, 한 줄 띄고.
+"그리고 한 가지. 7번 크레인의 일은 양쪽 모두 잊는다. 회사는 첩자를 보낸 적이 없고, 노조는 첩자를 만난 적이 없다. 그렇게 하지 않는다면, 7번 크레인은 첫 번째일 뿐 마지막이 아닐 것이오.
+— 로사 이바라, 붉은 닻 위원장"
+LOGIC: 로사는 파업을 끝내려 한다. 새 크레인을 받아들이고. 대가는 돈, 채용권, 그리고 아들의 이름.
+LOGIC: 그리고 마지막 줄. "7번 크레인의 일은 양쪽 모두 잊는다." 크레인의 남자는 협상 카드다. 동시에 협박이다. 다음은 회사 사람 차례일 수도 있다는.
+RHETORIC: 코뮌주의자가 쓴 문서가 아니다. 이건 사업가의 문서다. 아니, 전쟁을 여러 번 겪은 사람의 문서다. 이길 수 없는 싸움에서 가장 많이 건지는 법을 아는.
+EMPATHY: "토마스 이바라의 이름." 세 조건 중 그것만 명령형이 아니다. "삭제하고, 철회한다." 그녀는 거기서 펜을 한 번 멈췄다. 잉크가 조금 진하다.
+{letter_resealed} ~ item take sealed_letter
+{letter_resealed} ~ item give opened_letter
+당신은 편지를 접어 봉투에 넣는다. {{letter_resealed ? "밀랍이 뭉개진 채로." : "밀랍 덩어리를 제자리에 대고 따뜻한 칼등으로 눌러 붙인다. 감쪽같다."}}
+-> END

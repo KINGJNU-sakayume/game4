@@ -152,6 +152,8 @@
     [/^ending\s+([A-Za-z0-9_]+)$/, m => ({ op: 'ending', id: m[1] })],
     [/^sleep(?:\s+(\d{1,2}):(\d{2}))?$/, m => ({ op: 'sleep', wake: m[1] ? (+m[1] * 60 + +m[2]) : 480 })],
     [/^heal$/, () => ({ op: 'heal' })],
+    [/^waittide$/, () => ({ op: 'waittide' })],
+    [/^wait\s+(\d{1,2}):(\d{2})$/, m => ({ op: 'wait', at: +m[1] * 60 + +m[2] })],
     [/^loc\s+([A-Za-z0-9_]+)$/, m => ({ op: 'loc', id: m[1] })],
     [/^art\s+([A-Za-z0-9_]+)$/, m => ({ op: 'art', id: m[1] })],
     [/^ambient\s+"(.*)"$/, m => ({ op: 'ambient', text: m[1] })],

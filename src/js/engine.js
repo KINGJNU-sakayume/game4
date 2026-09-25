@@ -156,10 +156,23 @@
     hour() { return Math.floor(this.clockMin() / 60); }
     curNodeId() { const b = this.cur && C.blocks[this.cur.b]; return b ? b.node : null; }
 
-    isLowTide() {
-      const h = this.clockMin() / 60;
+    isLowTide(min) {
+      if (min === undefined) min = this.s.min;
+      const h = (((min % 1440) + 1440) % 1440) / 60;
       const shift = Math.max(0, this.s.day - 1);
       return (h >= 5 + shift && h < 10 + shift) || (h >= 17 + shift && h < 21 + shift);
+    }
+    /** 지금 썰물이 끝날 때까지 남은 분 (썰물이 아니면 0) */
+    minutesLeftLowTide() {
+      let n = 0;
+      while (this.isLowTide(this.s.min + n) && n < 1440) n += 5;
+      return n;
+    }
+    /** 다음 썰물이 시작될 때까지 남은 분 (지금이 썰물이면 0) */
+    minutesToLowTide() {
+      let n = 0;
+      while (!this.isLowTide(this.s.min + n) && n < 1440) n += 5;
+      return n;
     }
 
     value(name) {
@@ -180,6 +193,8 @@
         case 'points': return s.points;
         case 'first': return (s.visits[this.curNodeId()] || 0) <= 1;
         case 'lowtide': return this.isLowTide();
+        case 'tideleft': return this.minutesLeftLowTide();
+        case 'tidewait': return this.minutesToLowTide();
         case 'night': { const h = this.hour(); return h >= 20 || h < 6; }
         case 'loc': return s.loc;
         case 'archetype': return s.archetype;
@@ -565,6 +580,12 @@
           case 'ending': this.finish(f.id); return;
           case 'sleep': this.sleep(f.wake); break;
           case 'heal': s.hLoss = 0; s.mLoss = 0; this.notify('update'); break;
+          case 'waittide': this.advance(this.minutesToLowTide()); break;
+          case 'wait': {
+            const cur = this.clockMin();
+            if (f.at > cur) this.advance(f.at - cur);
+            break;
+          }
           case 'loc': s.loc = f.id; this.notify('scene'); break;
           case 'art': s.art = f.id; this.notify('scene'); break;
           case 'ambient': this.emit({ k: 'ambient', text: this.interp(f.text) }); break;
