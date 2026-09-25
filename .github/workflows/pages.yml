@@ -1,0 +1,73 @@
+# 탱고 레테 — GitHub Pages 배포
+#
+# 기본 브랜치에 push하면: 스크립트 검증 → 무작위 플레이 시뮬레이션 → 단일 HTML 빌드 → GitHub Pages 배포.
+# 다른 브랜치에 push하면 검증과 빌드만 하고 배포하지 않는다.
+# Actions 탭에서 수동 실행(workflow_dispatch)도 할 수 있다.
+#
+# 처음 한 번: 저장소 Settings → Pages → Build and deployment → Source 를 "GitHub Actions" 로 바꾼다.
+name: Pages
+
+on:
+  push:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: 검증과 빌드
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: 저장소 가져오기
+        uses: actions/checkout@v4
+
+      - name: Node 준비
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: 스크립트 검증
+        run: node tools/validate.mjs
+
+      - name: 무작위 플레이 시뮬레이션
+        run: node tools/simulate.mjs 150 4000
+
+      - name: 빌드
+        run: node tools/build.mjs
+
+      - name: 사이트 파일 준비
+        run: |
+          mkdir -p _site
+          cp dist/tango-lethe.html _site/index.html
+          ls -la _site
+
+      - name: Pages 아티팩트 업로드
+        if: github.ref_name == github.event.repository.default_branch
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    name: GitHub Pages 배포
+    needs: build
+    if: github.ref_name == github.event.repository.default_branch
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      pages: write
+      id-token: write
+    concurrency:
+      group: pages
+      cancel-in-progress: false
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Pages 설정 확인
+        uses: actions/configure-pages@v5
+
+      - name: 배포
+        id: deployment
+        uses: actions/deploy-pages@v4

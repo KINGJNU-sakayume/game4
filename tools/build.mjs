@@ -1,6 +1,6 @@
 // 탱고 레테 — 빌드
 //  1) content/*.tl → src/js/content.bundle.js
-//  2) dist/tango-lethe.html  : 모든 것을 인라인한 단일 HTML (파일 하나로 실행)
+//  2) dist/tango-lethe.html  : 모든 것을 인라인한 단일 HTML (파일 하나로 실행, GitHub Pages의 index.html)
 //  3) dist/artifact.html     : 같은 내용, 문서 골격(doctype/html/head/body) 없는 버전
 import fs from 'node:fs';
 import path from 'node:path';
@@ -43,6 +43,8 @@ function buildDist() {
   const body = between(index, '<!-- BUILD:BODY -->', '<!-- /BUILD:BODY -->').trim();
   const title = (index.match(/<title>([^<]*)<\/title>/) || [0, '탱고 레테'])[1];
   const desc = (index.match(/<meta name="description" content="([^"]*)">/) || [0, ''])[1];
+  // 웹 배포(GitHub Pages)용 메타 태그와 파비콘 — 아티팩트 조각에는 넣지 않는다
+  const meta = between(index, '<!-- BUILD:META -->', '<!-- /BUILD:META -->').trim();
 
   const full = [
     '<!doctype html>',
@@ -52,6 +54,7 @@ function buildDist() {
     '<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">',
     '<title>' + title + '</title>',
     '<meta name="description" content="' + desc + '">',
+    meta,
     head,
     '<style>\n' + css + '\n</style>',
     '</head>',

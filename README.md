@@ -14,7 +14,9 @@
 
 ## 플레이하기
 
-`dist/tango-lethe.html`을 브라우저로 열면 됩니다. 인터넷 연결이 없으면 글꼴만 기본 글꼴로 대체됩니다.
+**웹에서:** https://kingjnu-sakayume.github.io/game4/ (GitHub Pages)
+
+**내 컴퓨터에서:** `dist/tango-lethe.html`을 브라우저로 열면 됩니다. 인터넷 연결이 없으면 글꼴만 기본 글꼴로 대체됩니다.
 
 1. **새 게임** → 원형(사색가 / 감응자 / 완력가 / 탱고꾼)을 고르거나 속성과 대표 기술을 직접 정합니다.
 2. **깨어난다.**
@@ -58,6 +60,7 @@ tools/              빌드, 검증, 무작위 플레이 시뮬레이터
 docs/DESIGN.md      세계관·사건의 진상·플래그 규약 (스포일러 주의)
 docs/SCRIPTING.md   .tl 스크립트 문법
 dist/               빌드 결과 (단일 HTML)
+.github/workflows/  GitHub Pages 배포 워크플로
 ```
 
 ## 개발
@@ -72,6 +75,16 @@ npm test           # validate + simulate
 ```
 
 `index.html`은 개발용이고(`src/js/content.bundle.js`를 불러오므로 먼저 `npm run build`), `dist/tango-lethe.html`은 모든 것이 한 파일에 들어간 배포본입니다.
+
+### GitHub Pages 배포 (GitHub Actions)
+
+`.github/workflows/pages.yml`이 배포를 맡습니다.
+
+- **기본 브랜치에 push** → 스크립트 검증 → 무작위 플레이 시뮬레이션 → 빌드 → `dist/tango-lethe.html`을 `index.html`로 GitHub Pages에 배포합니다.
+- **다른 브랜치에 push** → 검증과 빌드만 하고 배포하지 않습니다 (검사가 실패하면 여기서 걸러집니다).
+- **Actions 탭 → Pages → Run workflow** 로 수동 실행할 수도 있습니다.
+
+처음 한 번은 저장소 설정이 필요합니다: **Settings → Pages → Build and deployment → Source** 를 **GitHub Actions** 로 바꾸세요. 그 뒤로는 push할 때마다 자동으로 배포됩니다. 주소는 `https://<사용자 이름>.github.io/<저장소 이름>/` 입니다.
 
 ---
 
