@@ -189,6 +189,7 @@ for (const id in nodes) {
   if (n.attrs.event) {
     if (n.attrs.when) checkExpr(n.attrs.when, `${n.file}:${n.line} [${id} when]`);
     if (n.attrs.at) for (const l of n.attrs.at.split(',')) if (!isLoc(l)) errors.push(`${n.file}:${n.line}: 이벤트 at 대상이 장소가 아님 «${l}»`);
+    if (n.attrs.notat) for (const l of n.attrs.notat.split(',')) if (!isLoc(l)) errors.push(`${n.file}:${n.line}: 이벤트 notat 대상이 장소가 아님 «${l}»`);
   }
   if (n.attrs.art && !TL_RECIPES.has(n.attrs.art)) warnings.push(`${n.file}:${n.line}: 노드 «${id}»의 장면 «${n.attrs.art}»이 없음`);
 }

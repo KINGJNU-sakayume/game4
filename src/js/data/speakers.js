@@ -60,7 +60,7 @@
 
     /* 경비대 */
     VALDES: { name: $ => v($, 'valdes_named') ? '발데스 경감' : '수화기 속의 목소리' },
-    JUDIT: { name: '주디트 경사' },
+    PILAR: { name: '필라르 경사' },
     ORIOL: { name: '오리올 순경' },
     DISPATCHER: { name: '경비대 교환원', kind: 'object' },
     DISPATCH: { name: '경비대 교환원' },

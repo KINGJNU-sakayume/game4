@@ -65,13 +65,63 @@
     /* 진실 */
     { group: 'truth', title: '그날 밤', cond: 'bobo_suspect && !truth_known',
       text: '녹음테이프 속 아이의 목소리: "누나!" 옥상 비둘기장의 아이 기지. 누군가의 남동생.' },
-    { group: 'truth', title: '그날 밤', cond: 'truth_known',
-      text: '얀과 이네스는 옥상에서 탱고를 추었다. 비둘기장에서 자다 깬 보보는 누나가 공격당한다고 생각했다. 그는 당신이 준 총으로 쐈다. 로사는 모든 것을 덮기 위해 시신을 크레인에 매달게 했다.' },
+    { group: 'truth', title: '그날 밤', cond: 'recon_done && !truth_known',
+      text: '재구성: 자정 무렵 두 사람이 옥상 테라스에 올라왔다. 춤을 추었다. 01:17, 남자가 코르테 자세로 여자를 안고 몸을 숙였을 때, 6.8미터 떨어진 비둘기장의 구멍에서 한 발. 남은 것은 방아쇠를 당긴 손.' },
+    { group: 'truth', title: '그날 밤', cond: 'truth_known && !gun_memory',
+      text: '얀과 이네스는 옥상에서 탱고를 추었다. 비둘기장에서 자다 깬 보보는 누나의 웃음소리를 비명으로 들었고, 코르테를 폭력으로 보았다. 그는 경비대 총으로 쐈다. 열한 살 아이가 어떻게 경비대 총을? 로사는 모든 것을 덮기 위해 시신을 크레인에 매달게 했다.' },
+    { group: 'truth', title: '그날 밤', cond: 'truth_known && gun_memory',
+      text: '얀과 이네스는 옥상에서 탱고를 추었다. 비둘기장에서 자다 깬 보보는 누나의 웃음소리를 비명으로 들었고, 코르테를 폭력으로 보았다. 그는 당신이 아흐레 전 부두에서 목에 걸어 준 총으로 쐈다. 로사는 모든 것을 덮기 위해 시신을 크레인에 매달게 했다.' },
+
+    /* 총 */
+    { group: 'gun', title: '라븐 리볼버', cond: 'found_bullet && !gun_found',
+      text: '경비대 지급 라븐 7.65mm. 당신의 권총집은 비어 있다. 그 총은 지금 누군가의 손에 있다.' },
+    { group: 'gun', title: '라븐 리볼버', cond: 'holster_found && !gun_found',
+      text: '비둘기장 담요 밑의 빈 권총집, 안쪽에 "SCW 9-0417". 총은 아이에게 있다. 아이는 그것을 들고 다닌다.' },
+    { group: 'gun', title: '라븐 리볼버', cond: 'bobo_fled && !gun_found',
+      text: '보보가 장전된 총을 들고 밤 속으로 달아났다. 회색 까마귀가 부두에 오는 날에. 그는 누나에게 갈 것이다.' },
+    { group: 'gun', title: '라븐 리볼버', cond: 'gun_found',
+      text: '총을 되찾았다. 약실 여섯 개 중 두 개에 탄, 빈 탄피 하나. 당신은 남은 탄을 빼냈다. 이제 그것은 증거물이자, 당신의 지급품이다. 둘 다 당신 책임이다.' },
 
     /* 4번 크레인 */
     { group: 'crane4', title: '4번 크레인', cond: 'crane4_known',
       text: '6주 전 붕괴. 사망 6명. 회사 측 주장: 운전자 과실. 노조 측 주장: 정비 불량.' },
+    { group: 'crane4', title: '4번 크레인', cond: 'report_exists_known && !has.ev_report && !report_fate',
+      text: '얀 트로스트는 결론을 내렸다. "증거 확보. 청구 기각 권고." 그러나 보고서는 목요일 배에 실리지 않았다. 보고서는 어디 있는가?' },
     { group: 'crane4', title: '4번 크레인', cond: 'has.ev_report',
-      text: '얀 트로스트의 보고서: 할바르-마리스는 정비 일지를 14개월간 조작했다. 권양 케이블의 피로 파단. 운전자 과실의 증거 없음.' },
+      text: '얀 트로스트의 보고서: 할바르-마리스는 정비 일지를 14개월간 조작했다. 권양 케이블의 피로 파단. 운전자 과실의 증거 없음. 이것을 어디로 보낼 것인가? 노조, 보험사, 라디오, 경비대. 혹은 회사.' },
+    { group: 'crane4', title: '4번 크레인', cond: 'report_fate == 1',
+      text: '보고서를 로사 이바라에게 넘겼다. 그녀는 그것으로 협상할 것이다. 여섯 가족에게 빵을, 토마스에게 이름을. 대가는 비밀.' },
+    { group: 'crane4', title: '4번 크레인', cond: 'report_fate == 2',
+      text: '보고서는 협약 공문 행낭에 봉인되었다. 토요일 새벽 우편선으로 반데르메르의 보렐 & 파르 본사에. 얀이 원하던 곳으로. 닷새 늦게.' },
+    { group: 'crane4', title: '4번 크레인', cond: 'report_fate == 4',
+      text: '보고서는 그랜드 메리디안의 은 쟁반 위에서 재가 되었다. 700솔도.' },
+
+    /* 이바라 가족 */
+    { group: 'bobo', title: '보보', cond: 'bobo_confessed',
+      text: '보보가 털어놓았다. 비둘기장, 구멍, 누나의 "비명", 두 손으로 쥔 총. "나쁜 놈이었죠?" 그 질문에 당신이 대답했다.' },
+    { group: 'bobo', title: '보보', cond: 'bobo_crisis_seen',
+      text: '보보는 7번 크레인의 사다리에 올라가 총을 들고 외쳤다. "내가 쐈어!" 온 부두가, 라디오로 온 사르가가 들었다.' },
+    { group: 'rosa', title: '로사 이바라', cond: 'rosa_final_done && rosa_stance == 1',
+      text: '로사 이바라는 자수하기로 했다. 시신을 옮기고 매달게 한 것, 하역부들에게 대본을 준 것, 손녀를 숨긴 것. 전부.' },
+    { group: 'rosa', title: '로사 이바라', cond: 'rosa_final_done && rosa_stance != 1',
+      text: '로사 이바라는 끝까지 경찰서에 가지 않겠다고 했다. "나는 손주들을 지켰소."' },
+
+    /* 최후통첩 */
+    { group: 'standoff', title: '7번 크레인의 대치', cond: 'ultimatum && !standoff_done',
+      text: '회색 까마귀의 라스무센 대위: 트로스트를 매단 자들을 해 질 녘까지 7번 크레인 아래로 넘겨라. 그러지 않으면 직접 데려가겠다. 하역부들이 막으면 치우겠다.' },
+    { group: 'standoff', title: '7번 크레인의 대치', cond: 'standoff_result == 1',
+      text: '해 질 녘의 대치는 피 없이 끝났다. 까마귀들이 한 줄로 물러갔다.' },
+    { group: 'standoff', title: '7번 크레인의 대치', cond: 'standoff_result == 2',
+      text: '해 질 녘의 대치에서 총성이 울렸다. 부상자 여럿. 사망자는 없었다.' },
+    { group: 'standoff', title: '7번 크레인의 대치', cond: 'standoff_result == 3',
+      text: '해 질 녘의 대치에서 두 사람이 죽었다. 하역부 라우로 벨트란, 스물둘. 회색 까마귀 대원 요한, 스물.' },
+
+    /* 재빛 왜가리 */
+    { group: 'heron', title: '재빛 왜가리', cond: 'lorenzo_heron && !heron_proven',
+      text: '로렌초 벨로소는 40년째 레테 하구의 전설적인 새를 찾는다. 깃털, 발자국, 목격. 방파제 끝의 말뚝은 지도에는 16개다.' },
+    { group: 'heron', title: '재빛 왜가리', cond: 'heron_proven && !heron_seen',
+      text: '깃털, 발자국, 노란 눈. 17번째 말뚝은 말뚝이 아니다.' },
+    { group: 'heron', title: '재빛 왜가리', cond: 'heron_seen',
+      text: '넷째 날 새벽, 17번째 말뚝이 날개를 폈다. 그것은 바다가 아니라 도시로 날아갔다.' },
   ];
 })(typeof window !== 'undefined' ? window.TL : globalThis.TL);

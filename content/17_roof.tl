@@ -58,6 +58,7 @@ LOGIC: 여기서 한 사람이 쓰러져 피를 흘렸다. 그리고 누군가 �
 {lividity_known} VISUAL: 등과 엉덩이의 시반. 그는 여기 누워 있었다. 한두 시간. 평평한 타르 위에. 그다음에 옮겨졌다.
 ~ roof_searched = 1
 ~ roof_scene_known = 1
+~ task add t_truth
 ~ xp 25
 {met_yun} 윤 경위가 무릎을 꿇고 당신 옆에서 얼룩을 본다. 장갑 낀 손가락으로 가장자리를 긁어 봉투에 담는다.
 {met_yun} YUN: 사망 장소. 레테 무도장 옥상 테라스. 적었어요.
@@ -72,6 +73,7 @@ LOGIC: 여기서 한 사람이 쓰러져 피를 흘렸다. 그리고 누군가 �
 {met_yun} YUN: 누가 여길 문질렀어요. 세게. 그리고 화분으로 가렸고요.
 {met_yun} ~ roof_searched = 1
 {met_yun} ~ roof_scene_known = 1
+{met_yun} ~ task add t_truth
 {met_yun} ~ yun_trust += 1
 {met_yun} ~ xp 15
 -> END
@@ -190,7 +192,7 @@ LOGIC: 탱고의 코르테. 멀리서, 어둠 속에서, 1.6미터 위의 작은
 ~ bobo_suspect = 1
 ~ drawing_seen = 1
 ~ thought dance_of_two
-~ morale -1
+~ morale -1 soft
 ~ xp 20
 -> roof_loft_items
 
@@ -224,7 +226,7 @@ LOGIC: 7.65mm 라븐. 얀 트로스트의 가슴에서 나온 탄두. 당신의 
 ~ gun_memory = 1
 ~ bobo_suspect = 1
 {found_bullet} ~ thought old_cop_gun
-~ morale -2
+~ morale -2 soft
 ~ xp 30
 {met_yun} 오두막 밖에서 윤 경위가 당신을 부른다. 당신은 대답하지 못한다. 그녀가 사다리를 올라와 문간에서 당신을 본다. 당신 손의 권총집을. 거기 지진 번호를.
 {met_yun} 그녀는 아무 말도 하지 않는다. 오래.
@@ -281,7 +283,8 @@ HALFLIGHT: 그럼 총에는 아직 두 알이 남아 있다. 어딘가에. 누�
 {corte_insight || loft_angle} 난간 두 걸음 앞. 코르테 자리. 여기서 보면 그 자리가 정면으로, 조금 아래로 보인다.
 {pass(EMPATHY, 9)} EMPATHY: 밤이었다. 아이는 자다 깼다. 비둘기들이 뒤척였다. 구멍 밖에서 소리가 났다. 누나의 목소리. 웃음? 비명? 잠결의 아이에게 그 둘은 구별되지 않는다. 아이는 구멍에 눈을 댔다. 그리고 봤다. 검은 옷의 큰 남자가 누나를 붙잡고, 누나의 몸을 뒤로 꺾어 누르는 것을.
 {pass(EMPATHY, 9)} EMPATHY: 아이의 목에는 대통령 아저씨가 준 훈장이 걸려 있었다. 무거운 훈장이.
-~ morale -1
+{pass(EMPATHY, 9) && !loft_hole_seen} ~ morale -1 soft
+~ loft_hole_seen = 1
 -> roof_loft_items
 
 // ───────── 재구성 ─────────

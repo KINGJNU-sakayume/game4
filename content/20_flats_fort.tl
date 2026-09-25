@@ -53,7 +53,7 @@ ENDURANCE: 살았다. 발가락이 얼었다. 살았다.
 당신은 방파제 위에 토한다. 바닷물을. 그리고 조금의 럼을.
 PAIN: 갈비뼈가 울린다. 무릎이 까졌다. 추위가 뼛속까지 들어왔다.
 ~ health -2
-~ morale -1
+~ morale -1 soft
 => breakwater 12
 
 === flats_run_fort_ok
@@ -68,7 +68,7 @@ PHYSICAL: 봐. 아직 쓸 만하잖아. 이 몸.
 물살이 당신을 끌어당긴다. 옆으로. 바다 쪽으로. 당신은 허우적거린다. 손이 무언가를 잡는다. 썩은 뱀장어 통발의 말뚝. 붙잡는다. 끌어당긴다. 기어오른다.
 요새의 바위 기슭에 기어 올라갔을 때 당신은 온몸이 떨리고 있다. 이가 딱딱 부딪친다.
 ~ health -2
-~ morale -1
+~ morale -1 soft
 => fort 12
 
 === flats_wreck_refuge
@@ -191,7 +191,7 @@ INLAND: 그런데 돌아왔어. 아침에. 속옷 차림으로. 구두 한 짝�
 === flats_ebb_fail
 당신은 보려고 한다. 눈이 미끄러진다. 회색이 흐려진다. 두통. 관자놀이를 쇠못으로 박는 것 같은 두통.
 당신은 눈을 감는다. 회색이 눈꺼풀 안쪽에도 있다.
-~ morale -1
+~ morale -1 soft
 -> END
 
 === flats_digger
@@ -312,12 +312,12 @@ ENCYCLOPEDIA: 에르난 소토. 「우리는 잊지 않으리」의 작사가. �
 {rosa_history} LIMBIC: 파코가 말했지. 그놈은 춤을 못 췄다고. 로사가 가르쳤다고. 석 달 만에 제일 잘 추게 됐다고.
 그 옆, 나중에 새긴 것이 분명한 더 선명한 글씨. 아직 돌가루가 남아 있다. 최근의 것.
 "T. 이바라 — 4번 크레인. 아빠, 할아버지 옆에 적었어. — I."
-~ fort_names_read = 1
-~ ines_where = 1
 EMPATHY: 이네스. 그녀가 여기 있었다. 최근에. 아버지의 이름을 할아버지 옆에 새겼다. 46년 떨어진 두 죽음을 한 벽에.
 {pass(CONCEPT, 10)} CONCEPT: 처형의 벽이 추모의 벽이 되었다. 총살한 쪽은 벽을 남겼고, 총살당한 쪽은 그 벽에 이름을 새겼다. 누가 이겼는가? 벽은 대답하지 않는다. 벽은 모든 것을 받아 적을 뿐이다.
-~ morale -1
-~ xp 10
+{!fort_names_read} ~ morale -1 soft
+{!fort_names_read} ~ xp 10
+~ fort_names_read = 1
+~ ines_where = 1
 -> fort_wall
 
 === fort_wall_touch_ok
@@ -331,7 +331,7 @@ SHIVERS: 그리고 노래가 멈춘다. 한 목소리만 남는다. 마지막 �
 SHIVERS: 이것이 여섯 번. 하루에.
 당신은 손을 뗀다. 손가락 끝이 하얗다.
 {rasmus_history} HALFLIGHT: 라스무센. 협약 해병대. 그는 이 벽을 알까. 그는 10년 뒤에 이 부두에 왔다. 그리고 한 하역부를 체포해서 요새로 보냈다.
-~ morale -1
+~ morale -1 soft
 ~ fort_vision = 1
 ~ xp 15
 -> fort_wall
@@ -360,6 +360,7 @@ LOGIC: 이 섬에 누군가 있다. 꽃을 가져다 놓고, 오렌지를 먹고
 {met_yun} YUN: 벽은 누가 만들든 똑같아요.
 {met_yun} ~ yun_trust += 1
 ~ al_communard += 1
+~ thought soul_of_watch
 ~ morale 1
 -> fort_wall
 
@@ -438,7 +439,7 @@ INES: 한 발짝만 더 오면 쏠 거예요. 신호탄 총이에요. 요새 창
 -> ines_door_hub
 
 === ines_door_hub
-+ "경비대요. 얀 트로스트 사건을 수사하고 있소." -> ines_door_police
+* "경비대요. 얀 트로스트 사건을 수사하고 있소." -> ines_door_police
 + {dream1} "그가 전해 달라고 했소. 네 번은 밟았지만 다섯 번째는 안 밟았다고." -> ines_door_dream
 + {has.ev_lesson_card} "자정, 위에서. I. 당신이 이 카드에 쓴 글씨요?" -> ines_door_card
 + {has.ev_photo} 사진을 문틈으로 밀어 넣는다. -> ines_door_photo
@@ -449,12 +450,13 @@ INES: 한 발짝만 더 오면 쏠 거예요. 신호탄 총이에요. 요새 창
 + 물러선다. -> END
 
 === ines_door_police
+~ ines_door_police_n += 1
 INES: 경비대.
 그녀가 웃는다. 웃음이 아니다.
 INES: 경비대가 나흘 동안 뭘 했는데요? 그 사람을 크레인에 매달아 두고, 갈매기가 쪼아 먹는 걸 구경했잖아요.
 INES: 아, 알아요. 당신이 누군지. 레테 7호실의 밤의 대통령. 아침을 폐지하겠다던. 당신이 그 나흘 동안 뭘 했는지 온 솔레아가 알아요.
 HALFLIGHT: 그녀 말이 맞다. 그리고 그녀는 문을 열지 않을 것이다. 이 말로는.
-~ morale -1
+{ines_door_police_n == 1} ~ morale -1 soft
 -> ines_door_hub
 
 === ines_door_dream
@@ -620,7 +622,7 @@ INES: 갑자기. 제 위로. 전부. 저는 그 사람이 장난치는 줄 알�
 INES: 그다음에 소리가 들렸어요. 총소리가 먼저였는데, 저한테는 나중에 들렸어요. 그리고 비둘기들이. 전부. 하얗게. 날개 소리가 너무 커서 아무것도 안 들렸어요.
 INES: 그 사람이 저를 봤어요. 안경이 날아가서 잘 안 보였을 거예요. 그 사람이 말했어요. "안 밟았어요."
 INES: 그게 마지막이었어요.
-~ morale -1
+~ morale -1 soft
 {ines_dream_told} LIMBIC: "안 밟았어요." 꿈속의 남자가 한 말. 그가 마지막으로 한 말.
 {roof_searched} VISUAL: 난간 두 걸음 앞. 코르테. 화분 옆. 안경은 화분 틈으로. 모든 것이 맞는다.
 ---

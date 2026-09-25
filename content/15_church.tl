@@ -178,6 +178,8 @@ SHIVERS: 이 도시는 80년 동안 이 소리를 들었다. 그리고 그 소�
   -> lina_ebb
 * {radio_fixed} "신청곡을 보낼 수 있소?"
   -> lina_request
+* {radio_fixed && has.ev_report && !report_broadcast} "이 보고서를 방송해 줄 수 있소?"
+  -> lina_report
 * "당신은 왜 이걸 하오?"
   -> lina_why
 + 계단을 내려간다. -> END

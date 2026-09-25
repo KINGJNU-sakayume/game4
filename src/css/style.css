@@ -534,7 +534,8 @@ button:focus-visible, [tabindex]:focus-visible, input:focus-visible, textarea:fo
 .ending-k { font-family: var(--font-ui); font-size: .72rem; letter-spacing: .4em; color: var(--paper-dim); }
 .ending-t { font-family: var(--font-deco); font-size: clamp(2.2rem, 7vw, 4.2rem); margin: .3em 0 .2em; color: #ffe6de; text-shadow: 0 0 20px rgba(255, 80, 100, .4); line-height: 1.1; }
 .ending-s { font-family: var(--font-display); font-size: 1.2rem; color: var(--paper-2); margin-bottom: 1.6em; }
-.ending-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin: 1.4em 0 2em; font-family: var(--font-ui); }
+.ending-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin: 1.4em 0 2em; font-family: var(--font-ui); }
+@media (max-width: 520px) { .ending-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 .ending-stats div { border: 1px solid var(--line); padding: .7em; }
 .ending-stats b { display: block; font-size: 1.3rem; color: var(--sodium-2); font-variant-numeric: tabular-nums; }
 .ending-stats span { font-size: .72rem; color: var(--paper-dim); letter-spacing: .1em; }

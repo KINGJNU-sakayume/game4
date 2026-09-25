@@ -80,6 +80,10 @@ YUN: 다음이요.
 {ines_known && !ines_met && !ines_where} YUN: 이네스를 찾아야 해요. 그녀를 아는 사람들한테 물어봐요. 파코 씨, 오를라 씨, 벌집의 이웃들. 로사는 말 안 해 줄 거고요.
 {ines_where && !ines_met} YUN: 조수 요새요. 썰물 때 개펄을 걸어서 건널 수 있어요. 아니면 배로. 방파제에 가서 조수 시간을 확인하죠.
 {bobo_suspect && !truth_known} YUN: ……그 아이요. 보보. 이야기를 해 봐야 해요. 조심해서요.
+{bobo_suspect && !truth_known && !bobo_loft_met} YUN: 벌집 애들 말로는 보보가 밤마다 집에 안 들어간대요. 레테 옥상 비둘기장이 그 애 "본부"라면서요. 밤에 가 보면 있을 거예요.
+{truth_known && !gun_found && !bobo_fled} YUN: 그 총이요. 그 아이가 아직 가지고 있어요. 까마귀들이 오기 전에 받아 와야 해요. 소리 지르지 말고, 갑자기 움직이지 말고.
+{bobo_fled && !gun_found} YUN: 보보가 총을 들고 달아났어요. 그 애가 갈 곳은 하나예요. 누나한테. 첫 썰물에 요새로 갔을 거예요.
+{has.ev_report && !report_fate} YUN: 그리고 그 보고서. 어디로 보낼지 정하셔야 해요. 방파제의 협약 순찰정에는 공문 행낭이 있어요. 리나는 방송을 할 수 있고요. 로사 이바라는 그걸 원할 거고요. 크루이프도.
 {ultimatum && !standoff_done} YUN: 그리고 잊지 마세요. 회색 까마귀의 시한이 {{ultimatum_day + 1}}일차 해 질 녘이에요. 그 전에 7번 크레인에 가 있어야 해요.
 {standoff_done && !rosa_final_done} YUN: 로사 이바라요. 이제 그 사람하고 끝을 봐야 해요.
 {rosa_final_done && !final_report} YUN: 보고서요. 형사님이 쓰셔야 해요. 제가 대신 쓸 수는 없어요.

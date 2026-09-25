@@ -99,7 +99,7 @@ BOBO: "가져라, 꼬마 선장! 나는 이제 총 따위는 끝났다! 나는 �
 ---
 ~ gun_memory = 1
 {found_bullet} ~ thought old_cop_gun
-~ morale -2
+~ morale -2 soft
 ~ xp 30
 LIMBIC: 네가 줬어. 장전된 총을. 열한 살 아이의 목에. 연설을 하면서.
 VOLITION: 숨 쉬어. 지금 무너지면 안 돼. 지금은 안 돼. 저 아이 손에 아직 그게 있어.
@@ -114,7 +114,7 @@ BOBO: 기억나요? 기억나요!
 BOBO: "가져라, 꼬마 선장! 미래는 너희 거다!" 아저씨 멋있었어요. 진짜 대통령 같았어요.
 BOBO: 저 그 다음 날 아저씨 찾아갔었어요. 레테에. 총 보여 주려고. 잘 닦았다고. 근데 아저씨는 안 일어났어요. 오를라 아줌마가 쫓아냈어요.
 {pass(EMPATHY, 8)} EMPATHY: 그는 너를 찾아왔었다. 총을 돌려주러 온 게 아니다. 자랑하러 온 거다. 그리고 어쩌면, 아주 어쩌면, 누군가 이걸 가져가 주기를 바랐을지도.
-~ morale -1
+~ morale -1 soft
 -> bobo_loft_talk
 
 === bobo_sister
@@ -299,7 +299,7 @@ BOBO: 누나가 좋아하는 사람을 제가 죽였어요.
 BOBO: 누나가 좋아하는 사람을……
 당신은 총을 집는다. 조용히. 그리고 아이를 안는다. 혹은 아이가 당신에게 쓰러진다. 어느 쪽인지 모른다. 비둘기들이 머리 위에서 조용해진다.
 ~ bobo_told = 1
-~ morale -1
+~ morale -1 soft
 ~ xp 20
 -> bobo_gun_taken
 
@@ -395,7 +395,7 @@ BOBO: 가요. 가라고요. 제발.
 PAIN: 아프다. 좋아. 아파도 된다. 총은 네 손에 있다.
 아이가 당신의 팔을 놓고 구석으로 기어간다. 무릎을 끌어안고. 당신을 노려본다. 배신당한 얼굴로.
 BOBO: ……도둑. 도둑 경찰.
-~ health -1
+~ health -1 soft
 ~ bobo_grabbed = 1
 ~ bobo_calm -= 2
 -> bobo_gun_taken
@@ -408,8 +408,8 @@ BOBO: ……도둑. 도둑 경찰.
 PAIN: 뺨이 뜨겁다. 화약 가루. 총알은 네 머리 위 한 뼘을 지나갔다. 한 뼘.
 {met_yun} YUN: 형사님!
 아이가 비명을 지른다. 총을 든 채로. 자기가 쏜 소리에 자기가 놀라서. 드럼통 소리에 웅크리던 그 몸이 이번에는 웅크리지 않는다. 튀어 오른다.
-~ health -1
-~ morale -1
+~ health -1 soft
+~ morale -1 soft
 ~ bobo_shot_loft = 1
 -> bobo_flee
 
@@ -447,7 +447,7 @@ BOBO: 오지 마요!
 === bobo_chase_fail
 당신은 비둘기장 받침대에서 뛰어내린다. 발이 타르의 부푼 물집을 밟는다. 미끄러진다. 당신은 옆으로 넘어진다. 어깨가 타르 바닥에 부딪친다.
 당신이 일어났을 때, 비상계단 아래 뒷마당은 비어 있다. 골목 입구에서 작은 발소리가 멀어진다.
-~ health -1
+~ health -1 soft
 -> bobo_fled_end
 
 === bobo_fled_end
@@ -465,7 +465,7 @@ BOBO: 오지 마요!
 LOGIC: 그는 어디로 갔을까. 할머니에게는 안 간다. 할머니의 "잊어버려"로부터 도망쳐 온 아이다. 그렇다면—
 {ines_where || bobo_to_fort || bobo_supply} LOGIC: 누나. 요새. 첫 썰물에.
 {!ines_where && !bobo_to_fort && !bobo_supply} LOGIC: 모르겠다. 이 아이가 누구에게 가는지 알아야 한다.
-~ morale -1
+~ morale -1 soft
 -> END
 
 // ───────── 총을 받은 뒤 ─────────

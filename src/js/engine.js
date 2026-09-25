@@ -311,8 +311,8 @@
       }
       return v;
     }
-    healthMax() { return Math.max(1, this.level('ENDURANCE') + 1 + this.extraMax('health')); }
-    moraleMax() { return Math.max(1, this.level('VOLITION') + 1 + this.extraMax('morale')); }
+    healthMax() { return Math.max(1, this.level('ENDURANCE') + 2 + this.extraMax('health')); }
+    moraleMax() { return Math.max(1, this.level('VOLITION') + 2 + this.extraMax('morale')); }
     health() { return this.healthMax() - this.s.hLoss; }
     morale() { return this.moraleMax() - this.s.mLoss; }
     keepAlive() {
@@ -320,8 +320,17 @@
       if (this.health() < 1) this.s.hLoss = this.healthMax() - 1;
       if (this.morale() < 1) this.s.mLoss = this.moraleMax() - 1;
     }
-    damage(kind, n) {
+    damage(kind, n, soft) {
       const s = this.s;
+      // soft: 이야기의 감정적 타격 — 죽음에 이르지는 않는다 (1에서 버틴다)
+      if (soft && n < 0) {
+        const cur = kind === 'h' ? this.health() : this.morale();
+        n = Math.max(n, 1 - cur);
+        if (n >= 0) {
+          this.note(kind === 'h' ? 'hurt' : 'hurtm', (kind === 'h' ? '체력' : '사기') + '이 바닥에서 버틴다 (1/' + (kind === 'h' ? this.healthMax() : this.moraleMax()) + ')');
+          return;
+        }
+      }
       if (kind === 'h') {
         const before = this.health();
         s.hLoss = U.clamp(s.hLoss - n, 0, 99);
@@ -554,8 +563,8 @@
             this.applyFx([{ op: 'money', n: f.mode === '+=' ? val : -val }]);
             break;
           }
-          case 'health': this.damage('h', f.n); break;
-          case 'morale': this.damage('m', f.n); break;
+          case 'health': this.damage('h', f.n, f.soft); break;
+          case 'morale': this.damage('m', f.n, f.soft); break;
           case 'xp': this.gainXp(f.n); break;
           case 'time': this.advance(f.n); break;
           case 'item':
@@ -686,6 +695,7 @@
         if (!n.attrs.repeat && this.s.events[n.id]) continue;
         if (n.attrs.on && n.attrs.on !== trigger) continue;
         if (n.attrs.at && n.attrs.at.split(',').indexOf(this.s.loc) < 0) continue;
+        if (n.attrs.notat && n.attrs.notat.split(',').indexOf(this.s.loc) >= 0) continue;
         if (n.attrs.when && !this.test(n.attrs.when)) continue;
         this.s.events[n.id] = (this.s.events[n.id] || 0) + 1;
         this.frames = [];
