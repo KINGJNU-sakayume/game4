@@ -1,0 +1,16 @@
+{
+  "name": "tango-lethe",
+  "version": "1.0.0",
+  "description": "탱고 레테 — 디스코 엘리시움 구조에 대한 오마주로 만든 한국어 텍스트 수사 RPG",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node tools/build.mjs",
+    "validate": "node tools/validate.mjs",
+    "simulate": "node tools/simulate.mjs 300 3000",
+    "test": "node tools/validate.mjs && node tools/simulate.mjs 300 3000"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
