@@ -1,6 +1,6 @@
 # 탱고 레테 — GitHub Pages 배포
 #
-# 기본 브랜치에 push하면: 스크립트 검증 → 무작위 플레이 시뮬레이션 → 단일 HTML 빌드 → GitHub Pages 배포.
+# 기본 브랜치에 push하면: 스크립트 검증 → 무작위 플레이 시뮬레이션 → 빌드(dist/site: index.html + 그림) → GitHub Pages 배포.
 # 다른 브랜치에 push하면 검증과 빌드만 하고 배포하지 않는다.
 # Actions 탭에서 수동 실행(workflow_dispatch)도 할 수 있다.
 #
@@ -39,9 +39,9 @@ jobs:
 
       - name: 사이트 파일 준비
         run: |
-          mkdir -p _site
-          cp dist/tango-lethe.html _site/index.html
-          ls -la _site
+          rm -rf _site
+          cp -r dist/site _site
+          ls -la _site _site/assets/scenes | head -20
 
       - name: Pages 아티팩트 업로드
         if: github.ref_name == github.event.repository.default_branch

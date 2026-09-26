@@ -1544,5 +1544,102 @@
    "focus": 0.7
   }
  },
- "portraits": {}
+ "portraits": {
+  "you": {
+   "src": "portraits/you.webp"
+  },
+  "yun": {
+   "src": "portraits/yun.webp"
+  },
+  "orla": {
+   "src": "portraits/orla.webp"
+  },
+  "emile": {
+   "src": "portraits/emile.webp"
+  },
+  "paco": {
+   "src": "portraits/paco.webp"
+  },
+  "bobo": {
+   "src": "portraits/bobo.webp"
+  },
+  "marga": {
+   "src": "portraits/marga.webp"
+  },
+  "ignacio": {
+   "src": "portraits/ignacio.webp"
+  },
+  "aurelio": {
+   "src": "portraits/aurelio.webp"
+  },
+  "gregor": {
+   "src": "portraits/gregor.webp"
+  },
+  "rosa": {
+   "src": "portraits/rosa.webp"
+  },
+  "mateo": {
+   "src": "portraits/mateo.webp"
+  },
+  "alonso": {
+   "src": "portraits/alonso.webp"
+  },
+  "pepe": {
+   "src": "portraits/pepe.webp"
+  },
+  "lauro": {
+   "src": "portraits/lauro.webp"
+  },
+  "simon": {
+   "src": "portraits/simon.webp"
+  },
+  "kruyf": {
+   "src": "portraits/kruyf.webp"
+  },
+  "pilon": {
+   "src": "portraits/pilon.webp"
+  },
+  "rasmus": {
+   "src": "portraits/rasmus.webp"
+  },
+  "cesar": {
+   "src": "portraits/cesar.webp"
+  },
+  "lina": {
+   "src": "portraits/lina.webp"
+  },
+  "perpetua": {
+   "src": "portraits/perpetua.webp"
+  },
+  "lorenzo": {
+   "src": "portraits/lorenzo.webp"
+  },
+  "maria": {
+   "src": "portraits/maria.webp"
+  },
+  "volk": {
+   "src": "portraits/volk.webp"
+  },
+  "ines": {
+   "src": "portraits/ines.webp"
+  },
+  "valdes": {
+   "src": "portraits/valdes.webp"
+  },
+  "pilar": {
+   "src": "portraits/pilar.webp"
+  },
+  "oriol": {
+   "src": "portraits/oriol.webp"
+  },
+  "crow": {
+   "src": "portraits/crow.webp"
+  },
+  "worker": {
+   "src": "portraits/worker.webp"
+  },
+  "fisher": {
+   "src": "portraits/fisher.webp"
+  }
+ }
 }

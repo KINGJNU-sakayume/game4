@@ -21,10 +21,13 @@ export const ENGINE_FILES = [
 ];
 /** 브라우저 전용 파일 */
 export const UI_FILES = [
-  'src/js/scene.js',
+  'src/js/art.meta.js',
+  'src/js/art.js',
+  'src/js/audio.js',
   'src/js/ui.js',
   'src/js/main.js',
 ];
+export const ART_META = 'src/js/art.meta.js';
 export const CONTENT_BUNDLE = 'src/js/content.bundle.js';
 
 export function contentFiles() {

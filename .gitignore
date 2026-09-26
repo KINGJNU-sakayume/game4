@@ -4,3 +4,5 @@ node_modules/
 src/js/content.bundle.js
 dist/artifact.html
 tools/art/out/
+src/js/art.meta.js
+dist/site/

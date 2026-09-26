@@ -342,6 +342,294 @@
    "out": "assets/scenes/title.webp",
    "w": 1920,
    "h": 1080
+  },
+  {
+   "kind": "portrait",
+   "id": "you",
+   "key": "you",
+   "out": "assets/portraits/you.webp",
+   "w": 512,
+   "h": 640,
+   "q": 0.86
+  },
+  {
+   "kind": "portrait",
+   "id": "yun",
+   "key": "yun",
+   "out": "assets/portraits/yun.webp",
+   "w": 512,
+   "h": 640,
+   "q": 0.86
+  },
+  {
+   "kind": "portrait",
+   "id": "orla",
+   "key": "orla",
+   "out": "assets/portraits/orla.webp",
+   "w": 512,
+   "h": 640,
+   "q": 0.86
+  },
+  {
+   "kind": "portrait",
+   "id": "emile",
+   "key": "emile",
+   "out": "assets/portraits/emile.webp",
+   "w": 512,
+   "h": 640,
+   "q": 0.86
+  },
+  {
+   "kind": "portrait",
+   "id": "paco",
+   "key": "paco",
+   "out": "assets/portraits/paco.webp",
+   "w": 512,
+   "h": 640,
+   "q": 0.86
+  },
+  {
+   "kind": "portrait",
+   "id": "bobo",
+   "key": "bobo",
+   "out": "assets/portraits/bobo.webp",
+   "w": 512,
+   "h": 640,
+   "q": 0.86
+  },
+  {
+   "kind": "portrait",
+   "id": "marga",
+   "key": "marga",
+   "out": "assets/portraits/marga.webp",
+   "w": 512,
+   "h": 640,
+   "q": 0.86
+  },
+  {
+   "kind": "portrait",
+   "id": "ignacio",
+   "key": "ignacio",
+   "out": "assets/portraits/ignacio.webp",
+   "w": 512,
+   "h": 640,
+   "q": 0.86
+  },
+  {
+   "kind": "portrait",
+   "id": "aurelio",
+   "key": "aurelio",
+   "out": "assets/portraits/aurelio.webp",
+   "w": 512,
+   "h": 640,
+   "q": 0.86
+  },
+  {
+   "kind": "portrait",
+   "id": "gregor",
+   "key": "gregor",
+   "out": "assets/portraits/gregor.webp",
+   "w": 512,
+   "h": 640,
+   "q": 0.86
+  },
+  {
+   "kind": "portrait",
+   "id": "rosa",
+   "key": "rosa",
+   "out": "assets/portraits/rosa.webp",
+   "w": 512,
+   "h": 640,
+   "q": 0.86
+  },
+  {
+   "kind": "portrait",
+   "id": "mateo",
+   "key": "mateo",
+   "out": "assets/portraits/mateo.webp",
+   "w": 512,
+   "h": 640,
+   "q": 0.86
+  },
+  {
+   "kind": "portrait",
+   "id": "alonso",
+   "key": "alonso",
+   "out": "assets/portraits/alonso.webp",
+   "w": 512,
+   "h": 640,
+   "q": 0.86
+  },
+  {
+   "kind": "portrait",
+   "id": "pepe",
+   "key": "pepe",
+   "out": "assets/portraits/pepe.webp",
+   "w": 512,
+   "h": 640,
+   "q": 0.86
+  },
+  {
+   "kind": "portrait",
+   "id": "lauro",
+   "key": "lauro",
+   "out": "assets/portraits/lauro.webp",
+   "w": 512,
+   "h": 640,
+   "q": 0.86
+  },
+  {
+   "kind": "portrait",
+   "id": "simon",
+   "key": "simon",
+   "out": "assets/portraits/simon.webp",
+   "w": 512,
+   "h": 640,
+   "q": 0.86
+  },
+  {
+   "kind": "portrait",
+   "id": "kruyf",
+   "key": "kruyf",
+   "out": "assets/portraits/kruyf.webp",
+   "w": 512,
+   "h": 640,
+   "q": 0.86
+  },
+  {
+   "kind": "portrait",
+   "id": "pilon",
+   "key": "pilon",
+   "out": "assets/portraits/pilon.webp",
+   "w": 512,
+   "h": 640,
+   "q": 0.86
+  },
+  {
+   "kind": "portrait",
+   "id": "rasmus",
+   "key": "rasmus",
+   "out": "assets/portraits/rasmus.webp",
+   "w": 512,
+   "h": 640,
+   "q": 0.86
+  },
+  {
+   "kind": "portrait",
+   "id": "cesar",
+   "key": "cesar",
+   "out": "assets/portraits/cesar.webp",
+   "w": 512,
+   "h": 640,
+   "q": 0.86
+  },
+  {
+   "kind": "portrait",
+   "id": "lina",
+   "key": "lina",
+   "out": "assets/portraits/lina.webp",
+   "w": 512,
+   "h": 640,
+   "q": 0.86
+  },
+  {
+   "kind": "portrait",
+   "id": "perpetua",
+   "key": "perpetua",
+   "out": "assets/portraits/perpetua.webp",
+   "w": 512,
+   "h": 640,
+   "q": 0.86
+  },
+  {
+   "kind": "portrait",
+   "id": "lorenzo",
+   "key": "lorenzo",
+   "out": "assets/portraits/lorenzo.webp",
+   "w": 512,
+   "h": 640,
+   "q": 0.86
+  },
+  {
+   "kind": "portrait",
+   "id": "maria",
+   "key": "maria",
+   "out": "assets/portraits/maria.webp",
+   "w": 512,
+   "h": 640,
+   "q": 0.86
+  },
+  {
+   "kind": "portrait",
+   "id": "volk",
+   "key": "volk",
+   "out": "assets/portraits/volk.webp",
+   "w": 512,
+   "h": 640,
+   "q": 0.86
+  },
+  {
+   "kind": "portrait",
+   "id": "ines",
+   "key": "ines",
+   "out": "assets/portraits/ines.webp",
+   "w": 512,
+   "h": 640,
+   "q": 0.86
+  },
+  {
+   "kind": "portrait",
+   "id": "valdes",
+   "key": "valdes",
+   "out": "assets/portraits/valdes.webp",
+   "w": 512,
+   "h": 640,
+   "q": 0.86
+  },
+  {
+   "kind": "portrait",
+   "id": "pilar",
+   "key": "pilar",
+   "out": "assets/portraits/pilar.webp",
+   "w": 512,
+   "h": 640,
+   "q": 0.86
+  },
+  {
+   "kind": "portrait",
+   "id": "oriol",
+   "key": "oriol",
+   "out": "assets/portraits/oriol.webp",
+   "w": 512,
+   "h": 640,
+   "q": 0.86
+  },
+  {
+   "kind": "portrait",
+   "id": "crow",
+   "key": "crow",
+   "out": "assets/portraits/crow.webp",
+   "w": 512,
+   "h": 640,
+   "q": 0.86
+  },
+  {
+   "kind": "portrait",
+   "id": "worker",
+   "key": "worker",
+   "out": "assets/portraits/worker.webp",
+   "w": 512,
+   "h": 640,
+   "q": 0.86
+  },
+  {
+   "kind": "portrait",
+   "id": "fisher",
+   "key": "fisher",
+   "out": "assets/portraits/fisher.webp",
+   "w": 512,
+   "h": 640,
+   "q": 0.86
   }
  ]
 }

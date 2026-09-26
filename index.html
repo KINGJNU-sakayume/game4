@@ -6,71 +6,99 @@
 <title>탱고 레테</title>
 <meta name="description" content="망각의 강 하구, 파업 중인 항구, 크레인에 매달린 남자. 기억을 잃은 형사의 텍스트 수사 RPG.">
 <!-- BUILD:META -->
-<meta name="theme-color" content="#0d1214">
+<meta name="theme-color" content="#0b0b0d">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:title" content="탱고 레테">
 <meta property="og:description" content="망각의 강 하구, 파업 중인 항구, 크레인에 매달린 남자. 기억을 잃은 형사의 텍스트 수사 RPG.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230d1214'/%3E%3Cpath d='M9 28V9M5 9h23M9 9l5-5M14 4v5M26 9v10' stroke='%23e39b3f' stroke-width='2.2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M24 19a2 2 0 1 0 2 2' stroke='%23e39b3f' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<meta property="og:image" content="https://kingjnu-sakayume.github.io/game4/assets/scenes/title.webp">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230b0b0d'/%3E%3Cpath d='M9 28V9M5 9h23M9 9l5-5M14 4v5M26 9v10' stroke='%23e8a24a' stroke-width='2.2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M24 19a2 2 0 1 0 2 2' stroke='%23e8a24a' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
 <!-- /BUILD:META -->
 <!-- BUILD:HEAD -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=IBM+Plex+Sans+KR:wght@400;500;600&family=Poiret+One&family=Song+Myung&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Nanum+Myeongjo:wght@700;800&family=Song+Myung&family=Cormorant+Garamond:wght@500;600&family=Oswald:wght@400;500&display=swap">
 <!-- /BUILD:HEAD -->
 <link rel="stylesheet" href="src/css/style.css">
 </head>
 <body>
 <!-- BUILD:BODY -->
-<div id="app">
-  <section id="screen-title" class="screen" aria-label="타이틀">
-    <canvas id="title-canvas" aria-hidden="true"></canvas>
-    <div class="title-inner">
-      <h1 class="logo">T<span class="flick">A</span>NGO<br>LETH<span class="flick" style="animation-delay:3.1s">E</span></h1>
-      <p class="logo-ko">탱고 레테</p>
-      <p class="title-quote">레테 강 하구의 항구 지구 솔레아. 3주째 파업 중인 부두, 나흘째 크레인에 매달린 남자,
-        그리고 무도장 2층에서 모든 것을 잊은 채 깨어난 한 형사. 탱고는 춤추는 슬픈 생각이다.</p>
-      <nav class="title-menu" aria-label="메인 메뉴">
-        <button class="btn primary" id="btn-continue" type="button" hidden>이어하기</button>
-        <button class="btn" id="btn-new" type="button">새 게임</button>
-        <button class="btn" id="btn-load" type="button">불러오기</button>
-        <button class="btn" id="btn-about" type="button">이 게임에 대하여</button>
-      </nav>
+<div id="app" class="app">
+  <div class="stage" id="stage" aria-hidden="true">
+    <div class="stage-pan" id="stage-pan">
+      <img class="stage-img" id="stage-a" alt="" decoding="async">
+      <img class="stage-img" id="stage-b" alt="" decoding="async">
+      <canvas class="stage-fx" id="stage-fx"></canvas>
     </div>
-    <div class="title-foot">솔레아 지구 · 협약 자유항 사르가</div>
+    <div class="stage-tint" id="stage-tint"></div>
+    <div class="stage-shade" id="stage-shade"></div>
+  </div>
+  <div class="grain" id="grain" aria-hidden="true"></div>
+
+  <section id="screen-title" class="screen title" aria-label="타이틀">
+    <div class="brand" id="brand">
+      <div class="brand-latin">TANGO<i>·</i>LETHE</div>
+      <h1 class="brand-ko">탱고 레테</h1>
+      <div class="brand-rule"><span>망각의 강 하구에서 추는 마지막 춤</span></div>
+    </div>
+    <button type="button" class="press" id="press">아무 키나 누르세요</button>
+    <nav class="title-menu" id="title-menu" aria-label="메인 메뉴" hidden>
+      <button type="button" class="tm" id="btn-continue" hidden><span class="tm-t">이어하기</span><span class="tm-m" id="cont-meta"></span></button>
+      <button type="button" class="tm" id="btn-new"><span class="tm-t">새 게임</span></button>
+      <button type="button" class="tm" id="btn-load"><span class="tm-t">불러오기</span></button>
+      <button type="button" class="tm" id="btn-settings"><span class="tm-t">설정</span></button>
+      <button type="button" class="tm" id="btn-about"><span class="tm-t">이 게임에 대하여</span></button>
+    </nav>
+    <div class="title-foot"><span class="ver">v1.1</span><span>솔레아 지구 · 협약 자유항 사르가</span></div>
   </section>
 
-  <section id="screen-create" class="screen" hidden aria-label="형사 만들기"></section>
+  <section id="screen-create" class="screen create" hidden aria-label="형사 만들기"></section>
 
-  <section id="screen-game" class="screen" hidden aria-label="게임">
-    <aside class="scene" aria-label="장소">
-      <canvas id="scene-canvas" aria-hidden="true"></canvas>
-      <div class="place">
-        <div class="place-name" id="place-name">어둠</div>
-        <div class="place-sub" id="place-sub">1일차 · 09:40</div>
+  <section id="screen-game" class="screen game" hidden aria-label="게임">
+    <header class="where" id="where">
+      <div class="where-name" id="place-name">어둠</div>
+      <div class="where-sub">
+        <span id="place-day">1일차</span><i></i><span class="clock" id="place-clock">09:40</span><i></i><span id="place-phase">낮</span><span class="tide" id="tide-chip">밀물</span>
       </div>
-      <div class="hud">
-        <div class="vitals">
-          <div class="vital h" title="체력 — 인내에 따라 정해진다. 0이 되면 죽는다."><span class="lbl">체력</span><span class="pips" id="hp-pips"></span></div>
-          <div class="vital m" title="사기 — 의지에 따라 정해진다. 0이 되면 모든 것을 포기한다."><span class="lbl">사기</span><span class="pips" id="mp-pips"></span></div>
-        </div>
-        <div class="hud-right">
-          <span class="tidechip" id="tide-chip">밀물</span>
-          <span class="money" id="money">¤ 0.00</span>
-          <span class="lvl" id="lvl">레벨 1</span>
-        </div>
+    </header>
+    <div class="title-card" id="title-card" aria-hidden="true"><div class="tc-rule"></div><div class="tc-name" id="tc-name"></div><div class="tc-sub" id="tc-sub"></div></div>
+    <div class="notes" id="notes" aria-live="polite"></div>
+
+    <div class="hud" id="hud">
+      <div class="hud-core">
+        <div class="bar hp" id="hp-bar" role="img" aria-label="체력"></div>
+        <button type="button" class="face" id="hud-face" title="인물 (C)">
+          <img id="face-img" alt="당신의 초상">
+          <span class="face-lv" id="lvl">1</span>
+          <span class="face-pts" id="pts" hidden>+</span>
+        </button>
+        <div class="bar mp" id="mp-bar" role="img" aria-label="사기"></div>
       </div>
-    </aside>
-    <main class="ledger">
-      <nav class="toolbar" aria-label="도구">
-        <button class="btn" type="button" data-panel="char" id="tb-char">인물 <kbd>C</kbd></button>
-        <button class="btn" type="button" data-panel="thought" id="tb-thought">사고 <kbd>T</kbd></button>
-        <button class="btn" type="button" data-panel="inv" id="tb-inv">소지품 <kbd>I</kbd></button>
-        <button class="btn" type="button" data-panel="journal" id="tb-journal">일지 <kbd>J</kbd></button>
-        <button class="btn" type="button" data-panel="menu" id="tb-menu">메뉴 <kbd>Esc</kbd></button>
-      </nav>
+      <div class="hud-side">
+        <div class="money" id="money">¤ 0.00</div>
+        <nav class="hud-btns" aria-label="도구">
+          <button type="button" class="hb" data-panel="char" title="인물 (C)" aria-label="인물"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.6"/><path d="M4.5 20c.8-4.2 3.8-6.4 7.5-6.4s6.7 2.2 7.5 6.4"/></svg></button>
+          <button type="button" class="hb" data-panel="thought" title="사고 캐비닛 (T)" aria-label="사고 캐비닛"><svg viewBox="0 0 24 24"><path d="M12 12.2c0-.9.8-1.5 1.6-1.2.9.4 1 1.7.3 2.4-1 1-2.8.8-3.6-.4-1-1.6-.2-3.8 1.6-4.4 2.4-.8 4.8.9 5.1 3.3.4 3.1-2.3 5.6-5.3 5.4"/><path d="M6.3 17.6A8 8 0 1 1 18.6 7"/></svg></button>
+          <button type="button" class="hb" data-panel="inv" title="소지품 (I)" aria-label="소지품"><svg viewBox="0 0 24 24"><rect x="3.5" y="8" width="17" height="11.5" rx="1.5"/><path d="M8.5 8V5.8c0-.7.6-1.3 1.3-1.3h4.4c.7 0 1.3.6 1.3 1.3V8M3.5 13h17"/></svg></button>
+          <button type="button" class="hb" data-panel="journal" title="일지 (J)" aria-label="일지"><svg viewBox="0 0 24 24"><path d="M6 3.8h11.5v16.4H6a1.6 1.6 0 0 1-1.6-1.6V5.4A1.6 1.6 0 0 1 6 3.8z"/><path d="M8.2 3.8v16.4M11 8.5h4M11 11.5h4M14 3.8v5l1.2-1 1.2 1v-5"/></svg></button>
+          <button type="button" class="hb" data-panel="menu" title="메뉴 (Esc)" aria-label="메뉴"><svg viewBox="0 0 24 24"><path d="M4.5 7h15M4.5 12h15M4.5 17h15"/></svg></button>
+        </nav>
+      </div>
+    </div>
+
+    <main class="column" id="column">
+      <div class="talker" id="talker" hidden>
+        <div class="talker-frame"><img id="talker-img" alt=""></div>
+        <div class="talker-name" id="talker-name"></div>
+      </div>
       <div class="log" id="log" role="log" aria-live="polite"></div>
       <div class="choices" id="choices" role="group" aria-label="선택지"></div>
+      <div class="dice" id="dice" hidden>
+        <div class="dice-skill" id="dice-skill"></div>
+        <div class="dice-pair"><div class="die" id="die1"></div><div class="die" id="die2"></div></div>
+        <div class="dice-math" id="dice-math"></div>
+        <div class="dice-res" id="dice-res"></div>
+      </div>
     </main>
   </section>
 
@@ -78,14 +106,16 @@
     <div class="panel-box">
       <div class="panel-head">
         <div class="panel-tabs" id="panel-tabs"></div>
-        <button class="btn small" type="button" id="panel-close">닫기</button>
+        <button type="button" class="panel-x" id="panel-close" aria-label="닫기">✕</button>
       </div>
       <div class="panel-body" id="panel-body"></div>
+      <div class="panel-foot" id="panel-foot"><span><kbd>Esc</kbd> 닫기</span><span class="k-tab"><kbd>Tab</kbd> 다음 탭</span></div>
     </div>
   </div>
 
   <div class="ending" id="ending" hidden></div>
   <div class="toast" id="toast" hidden></div>
+  <div class="curtain" id="curtain"></div>
 </div>
 <!-- /BUILD:BODY -->
 <!-- BUILD:SCRIPTS -->
@@ -100,7 +130,9 @@
 <script src="src/js/data/endings.js"></script>
 <script src="src/js/engine.js"></script>
 <script src="src/js/content.bundle.js"></script>
-<script src="src/js/scene.js"></script>
+<script src="src/js/art.meta.js"></script>
+<script src="src/js/art.js"></script>
+<script src="src/js/audio.js"></script>
 <script src="src/js/ui.js"></script>
 <script src="src/js/main.js"></script>
 <!-- /BUILD:SCRIPTS -->

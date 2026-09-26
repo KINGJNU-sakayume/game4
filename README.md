@@ -6,7 +6,9 @@
 
 **탱고 레테**는 《디스코 엘리시움》의 구조 — 24개 기술이 내면의 목소리가 되어 말을 거는 대화, 흰색/빨간색 판정, 사고 캐비닛, 체력과 사기, 흐르는 시간과 정치 성향 — 에 대한 오마주로 만든 **한국어 텍스트 수사 RPG**입니다. 세계, 인물, 사건, 문장은 모두 이 게임을 위해 새로 쓴 것입니다.
 
-- 브라우저 하나로 실행되는 단일 HTML 파일 (설치 없음, 서버 없음)
+- 브라우저 하나로 실행 (설치 없음, 서버 없음) — 웹 주소 또는 그림까지 들어 있는 단일 HTML 파일
+- 장면 그림 34장(낮·밤·썰물·시신 변형)과 인물 초상 32장, 살아 움직이는 빛과 비, 필름 그레인
+- 실시간으로 합성하는 소리: 장소마다 다른 배경음, 오르골 선율, 주사위·판정·알림 효과음
 - 스크립트 약 **45만 자** (대사·서술·선택지 본문 약 30만 자), 노드 640여 개, 선택지 1,180여 개
 - 장소 15곳, 등장인물 40여 명, 내면의 목소리 24 + 2
 - 판정 160여 개(흰색/빨간색), 패시브 판정 100여 개, 사고 25개, 과제 25개
@@ -16,24 +18,26 @@
 
 **웹에서:** https://kingjnu-sakayume.github.io/game4/ (GitHub Pages)
 
-**내 컴퓨터에서:** `dist/tango-lethe.html`을 브라우저로 열면 됩니다. 인터넷 연결이 없으면 글꼴만 기본 글꼴로 대체됩니다.
+**내 컴퓨터에서:** `dist/tango-lethe.html`을 브라우저로 열면 됩니다. 그림이 모두 파일 안에 들어 있습니다. 인터넷 연결이 없으면 글꼴만 기본 글꼴로 대체됩니다.
 
-1. **새 게임** → 원형(사색가 / 감응자 / 완력가 / 탱고꾼)을 고르거나 속성과 대표 기술을 직접 정합니다.
-2. **깨어난다.**
+1. 타이틀에서 아무 키나 누르면 소리가 켜지고 메뉴가 나타납니다.
+2. **새 게임** → 원형(사색가 / 감응자 / 완력가 / 탱고꾼)을 고르거나 속성과 대표 기술을 직접 정합니다.
+3. **깨어난다.**
 
 ### 조작
 
 | 키 | 동작 |
 |---|---|
 | `1`–`9`, `0` | 선택지 고르기 |
-| `Space` / `Enter` | 계속 |
+| `↑` `↓` | 선택지 이동 |
+| `Space` / `Enter` | 계속 (글이 나오는 중이면 건너뛰기) |
 | `C` | 인물 (속성·기술, 기술 포인트 분배) |
 | `T` | 사고 캐비닛 |
 | `I` | 소지품 (착용·사용) |
 | `J` | 일지 (과제·사건 기록) |
 | `Esc` | 메뉴 (저장·불러오기·설정) |
 
-마우스나 터치로도 모든 것을 할 수 있습니다. 게임은 장면이 바뀔 때와 날이 바뀔 때 자동 저장되고, 저장 칸 다섯 개와 파일 내보내기/가져오기를 지원합니다.
+마우스나 터치로도 모든 것을 할 수 있습니다. 게임은 장면이 바뀔 때와 날이 바뀔 때 자동 저장되고, 저장 칸 다섯 개와 파일 내보내기/가져오기를 지원합니다. 설정에서 글자 크기, 글 나타나는 속도, 주사위 연출, 화면 효과, 음량(전체·음악·배경음·효과음)을 바꿀 수 있습니다.
 
 ## 시스템
 
@@ -53,13 +57,16 @@ src/js/core.js      유틸리티, 조건식 컴파일러, 효과 파서
 src/js/parser.js    .tl 스크립트 파서
 src/js/engine.js    게임 상태, 판정, 시간, 이벤트, 실행기
 src/js/data/        기술·화자·아이템·사고·과제·사건 기록·결말 데이터
-src/js/scene.js     장면 그림(캔버스 절차적 회화)
-src/js/ui.js        화면, 로그, 패널, 저장
+src/js/art.js       무대: 장면 그림 교차 페이드, 깜박이는 빛, 먼지·비, 그레인
+src/js/audio.js     WebAudio 합성 소리 (배경음·음악·효과음)
+src/js/ui.js        화면(타이틀·형사 만들기·게임·패널·결말), 주사위 연출, 저장
 src/css/style.css   스타일
+assets/             렌더된 장면 그림(scenes/)과 초상(portraits/), 광원 위치(art.json)
 tools/              빌드, 검증, 무작위 플레이 시뮬레이터
+tools/art/          그림을 그리는 코드 (헤드리스 Chromium에서 캔버스로 렌더)
 docs/DESIGN.md      세계관·사건의 진상·플래그 규약 (스포일러 주의)
 docs/SCRIPTING.md   .tl 스크립트 문법
-dist/               빌드 결과 (단일 HTML)
+dist/               빌드 결과 (site/ 웹 배포본, tango-lethe.html 단일 파일)
 .github/workflows/  GitHub Pages 배포 워크플로
 ```
 
@@ -70,17 +77,27 @@ Node 18 이상.
 ```bash
 npm run validate   # 스크립트 정적 검사: 노드·화자·아이템·조건식·도달 가능성
 npm run simulate   # 무작위 플레이 300판: 예외·막다른 길·결말 도달 확인
-npm run build      # content/*.tl → src/js/content.bundle.js, dist/*.html
+npm run build      # content/*.tl → src/js/content.bundle.js, dist/site/, dist/tango-lethe.html
 npm test           # validate + simulate
+npm run art        # tools/art 로 assets/ 의 그림을 다시 렌더 (playwright 필요)
 ```
 
-`index.html`은 개발용이고(`src/js/content.bundle.js`를 불러오므로 먼저 `npm run build`), `dist/tango-lethe.html`은 모든 것이 한 파일에 들어간 배포본입니다.
+`index.html`은 개발용이고(`src/js/content.bundle.js`와 `src/js/art.meta.js`를 불러오므로 먼저 `npm run build`), `dist/site/`는 웹 배포본(index.html + assets/), `dist/tango-lethe.html`은 그림까지 모든 것이 한 파일에 들어간 배포본입니다.
+
+### 그림
+
+장면과 초상은 손으로 그린 파일이 아니라 코드입니다. `tools/art/lib.js`(빛·안개·반사·실루엣 도구), `scenes*.js`(장소 16곳 + 표제 그림), `portraits.js`(옆얼굴 실루엣 초상)를 `tools/art/render.mjs`가 헤드리스 Chromium에서 1920×1080 캔버스로 그려 `assets/`에 WebP로 저장하고, 광원 위치를 `assets/art.json`에 적습니다. 게임은 그 위치를 읽어 네온·등대·불꽃을 실시간으로 깜박이게 합니다.
+
+```bash
+node tools/art/render.mjs scene quay --variant '{"night":true}'   # 한 장만 tools/art/out/ 에
+ART_FONTS=node_modules/@fontsource npm run art                    # 전부 assets/ 에 (간판 글꼴은 선택)
+```
 
 ### GitHub Pages 배포 (GitHub Actions)
 
 `.github/workflows/pages.yml`이 배포를 맡습니다.
 
-- **기본 브랜치에 push** → 스크립트 검증 → 무작위 플레이 시뮬레이션 → 빌드 → `dist/tango-lethe.html`을 `index.html`로 GitHub Pages에 배포합니다.
+- **기본 브랜치에 push** → 스크립트 검증 → 무작위 플레이 시뮬레이션 → 빌드 → `dist/site/`(index.html + 그림)를 GitHub Pages에 배포합니다.
 - **다른 브랜치에 push** → 검증과 빌드만 하고 배포하지 않습니다 (검사가 실패하면 여기서 걸러집니다).
 - **Actions 탭 → Pages → Run workflow** 로 수동 실행할 수도 있습니다.
 

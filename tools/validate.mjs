@@ -100,13 +100,12 @@ function checkFx(fx, loc) {
   }
 }
 
-// 장면 레시피 목록 (scene.js는 DOM 없이 실행 불가 → 정규식으로 추출)
+// 장면 그림 목록 (assets/art.json 의 열쇠에서 낮/밤·썰물·시신 접미사를 뗀 이름)
 const TL_RECIPES = new Set();
 {
-  const src = read('src/js/scene.js');
-  const re = /RECIPES\.([A-Za-z0-9_]+)\s*=/g;
-  let m;
-  while ((m = re.exec(src))) TL_RECIPES.add(m[1]);
+  const meta = JSON.parse(read('assets/art.json'));
+  for (const k of Object.keys(meta.scenes || {})) TL_RECIPES.add(k.replace(/_(d|n)[lb]?$/, ''));
+  for (const k of ['dream', 'dawn']) TL_RECIPES.add(k); // src/js/art.js 의 별칭
 }
 
 function checkTarget(t, loc) {
