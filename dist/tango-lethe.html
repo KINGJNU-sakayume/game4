@@ -3819,6 +3819,10 @@ input[type=range]::-moz-range-thumb { width: 12px; height: 12px; background: var
       };
       this.stage = new ART.Stage();
       AUD.init(this.settings.vol);
+      // 소리는 첫 사용자 입력 뒤에만 켤 수 있다 (저장에서 바로 이어 시작한 경우에도)
+      const unlock = () => { AUD.unlock(); if (AUD.ok) { document.removeEventListener('pointerdown', unlock, true); document.removeEventListener('keydown', unlock, true); } };
+      document.addEventListener('pointerdown', unlock, true);
+      document.addEventListener('keydown', unlock, true);
       this.applySettings();
       const you = ART.portraitUrl('you');
       if (you) this.el.face.src = you; else this.el.face.remove();
