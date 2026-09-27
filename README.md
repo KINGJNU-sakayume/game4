@@ -63,9 +63,10 @@ src/js/ui.js        화면(타이틀·형사 만들기·게임·패널·결말),
 src/css/style.css   스타일
 assets/             렌더된 장면 그림(scenes/)과 초상(portraits/), 광원 위치(art.json)
 tools/              빌드, 검증, 무작위 플레이 시뮬레이터, 소리 검사
-tools/art/          그림을 그리는 코드 (헤드리스 Chromium에서 캔버스로 렌더)
+tools/art/          그림을 그리는 코드 (헤드리스 Chromium에서 캔버스로 렌더), 바깥 그림 넣기(import.mjs)
 docs/DESIGN.md      세계관·사건의 진상·플래그 규약 (스포일러 주의)
 docs/SCRIPTING.md   .tl 스크립트 문법
+docs/ART_PROMPTS.md ChatGPT 그림 프롬프트 모음 (장면·초상, 통일성 유지 방법)
 dist/               빌드 결과 (site/ 웹 배포본, tango-lethe.html 단일 파일)
 .github/workflows/  GitHub Pages 배포 워크플로
 ```
@@ -92,6 +93,13 @@ npm run audio      # 소리 검사: 모든 배경음·효과음을 오프라인 
 ```bash
 node tools/art/render.mjs scene quay --variant '{"night":true}'   # 한 장만 tools/art/out/ 에
 ART_FONTS=node_modules/@fontsource npm run art                    # 전부 assets/ 에 (간판 글꼴은 선택)
+```
+
+ChatGPT 같은 이미지 생성기로 그림을 새로 만들 때는 `docs/ART_PROMPTS.md`를 봅니다. 스타일 바이블, 기준 그림을 만드는 순서, 장면 34장과 초상 32장의 프롬프트, 깜빡이는 광원 자리가 들어 있습니다. 만든 그림은 `tools/art/import.mjs`로 게임 규격(장면 1920×1080, 초상 512×640 WebP)에 맞춰 넣고, 광원 자리가 맞는지 미리보기로 확인합니다. 바깥 그림을 넣은 뒤에는 `npm run art`가 그것을 코드 그림으로 덮어쓰니 쓰지 마세요.
+
+```bash
+node tools/art/import.mjs scene quay_n ~/Downloads/quay_n.png   # 잘라서 assets/scenes/quay_n.webp 로
+node tools/art/import.mjs preview quay_n                        # 광원 자리·글 칸·휴대폰 범위 표시 → tools/art/out/
 ```
 
 ### GitHub Pages 배포 (GitHub Actions)
