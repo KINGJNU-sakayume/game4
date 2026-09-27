@@ -62,7 +62,7 @@ src/js/audio.js     WebAudio 합성 소리 (배경음·음악·효과음)
 src/js/ui.js        화면(타이틀·형사 만들기·게임·패널·결말), 주사위 연출, 저장
 src/css/style.css   스타일
 assets/             렌더된 장면 그림(scenes/)과 초상(portraits/), 광원 위치(art.json)
-tools/              빌드, 검증, 무작위 플레이 시뮬레이터
+tools/              빌드, 검증, 무작위 플레이 시뮬레이터, 소리 검사
 tools/art/          그림을 그리는 코드 (헤드리스 Chromium에서 캔버스로 렌더)
 docs/DESIGN.md      세계관·사건의 진상·플래그 규약 (스포일러 주의)
 docs/SCRIPTING.md   .tl 스크립트 문법
@@ -80,6 +80,7 @@ npm run simulate   # 무작위 플레이 300판: 예외·막다른 길·결말 �
 npm run build      # content/*.tl → src/js/content.bundle.js, dist/site/, dist/tango-lethe.html
 npm test           # validate + simulate
 npm run art        # tools/art 로 assets/ 의 그림을 다시 렌더 (playwright 필요)
+npm run audio      # 소리 검사: 모든 배경음·효과음을 오프라인 렌더해 클리핑·초저역·직류·잡음 이음매를 잰다 (playwright 필요)
 ```
 
 `index.html`은 개발용이고(`src/js/content.bundle.js`와 `src/js/art.meta.js`를 불러오므로 먼저 `npm run build`), `dist/site/`는 웹 배포본(index.html + assets/), `dist/tango-lethe.html`은 그림까지 모든 것이 한 파일에 들어간 배포본입니다.

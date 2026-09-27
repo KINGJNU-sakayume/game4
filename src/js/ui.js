@@ -127,10 +127,12 @@
       };
       this.stage = new ART.Stage();
       AUD.init(this.settings.vol);
-      // 소리는 첫 사용자 입력 뒤에만 켤 수 있다 (저장에서 바로 이어 시작한 경우에도)
-      const unlock = () => { AUD.unlock(); if (AUD.ok) { document.removeEventListener('pointerdown', unlock, true); document.removeEventListener('keydown', unlock, true); } };
-      document.addEventListener('pointerdown', unlock, true);
-      document.addEventListener('keydown', unlock, true);
+      // 소리는 사용자 입력 뒤에만 켤 수 있다 (저장에서 바로 이어 시작한 경우에도). 모바일에서는 탭 전환·전화 뒤에
+      // 소리가 멈추므로 입력이 있을 때마다, 화면이 다시 보일 때마다 깨운다 (이미 켜져 있으면 아무것도 하지 않는다).
+      // 터치의 pointerdown은 브라우저가 입력으로 쳐 주지 않을 수 있어 pointerup·touchend 에서도 부른다.
+      const unlock = () => AUD.unlock();
+      for (const ev of ['pointerdown', 'pointerup', 'touchend', 'keydown']) document.addEventListener(ev, unlock, true);
+      document.addEventListener('visibilitychange', () => { if (!document.hidden) AUD.unlock(); });
       this.applySettings();
       const you = ART.portraitUrl('you');
       if (you) this.el.face.src = you; else this.el.face.remove();
