@@ -7,6 +7,7 @@
   "scripts": {
     "build": "node tools/build.mjs",
     "art": "node tools/art/render.mjs all",
+    "audio": "node tools/audiocheck.mjs",
     "validate": "node tools/validate.mjs",
     "simulate": "node tools/simulate.mjs 300 3000",
     "test": "node tools/validate.mjs && node tools/simulate.mjs 300 3000"
