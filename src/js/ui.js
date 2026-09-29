@@ -63,6 +63,8 @@
   const CAT_ICON = { clothing: ['◈', '#d8b556'], tool: ['✦', '#74c0b6'], evidence: ['◉', '#d8c07a'], consumable: ['✚', '#e2664f'], junk: ['◇', '#9a948a'] };
   const ENDING_ART = { death: 'void', truth: 'hall_n', sacrifice: 'crane_n', dogs: 'quay_n', company: 'hotel_n', unsolved: 'flats_d', resign: 'roof_n' };
   const INTERIOR = { room: 1, room305: 1, hall: 1, hotel: 1, pawn: 1, cannery: 1 };
+  /* 7번 크레인의 시신이 보이는 장소: 시신 변형(…b) 그림이 있으면 시신을 내리기 전까지 그것을 쓴다 */
+  const BODY_VISIBLE = { crane: 1, quay: 1, roof: 1 };
   const SLOT_NAMES = {};
   for (const [k, v] of D.slots) SLOT_NAMES[k] = v;
 
@@ -760,7 +762,7 @@
       if (!g.s || this.screen !== 'game') return;
       const art = g.s.art || 'void';
       const st = this.sceneState();
-      const key = ART.sceneKey(art, { night: st.night, low: art === 'breakwater' && st.low, body: art === 'crane' && st.body });
+      const key = ART.sceneKey(art, { night: st.night, low: art === 'breakwater' && st.low, body: !!BODY_VISIBLE[art] && st.body });
       const inside = !!INTERIOR[art];
       this.stage.show(key, { motes: art === 'void' ? 40 : inside ? 30 : 16, moteColor: art === 'void' ? '170,225,235' : '255,230,190' });
       this.stage.setTint(art === 'void' ? '' : st.phase);
