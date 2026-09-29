@@ -468,3 +468,71 @@ It must still read as a tiny 108 × 135 px thumbnail: one clear silhouette and o
 - `docs/art-ref/key_art.png`, 되도록 2·3등 후보와 4-4의 낮 장면·초상도
 
 그림은 Claude와의 대화에 첨부하거나 `docs/art-ref/`에 넣어 push하면 된다.
+
+---
+
+## 6. 고른 방향 — 주인공 초상의 화풍 (D1)
+
+1라운드의 A1–C3은 모두 매체의 기교가 앞에 나와서, 게임 내내 보면 물릴 것 같다는 판단이 나왔다. 대신 옛 `ART_PROMPTS.md` 2-3(형사 초상)으로 만든 그림 [`docs/art-ref/style_you.png`](art-ref/style_you.png)의 화풍으로 간다.
+
+### 6-1. 원본(`assets/portraits/you.webp`)과 무엇이 같고 무엇이 달라졌나
+
+| | 원본 (코드 그림) | 고른 그림 |
+|---|---|---|
+| 구도 | 오른쪽을 보는 옆얼굴, 오른쪽에 세로 네온 LETHE | 그대로 |
+| 명암 | 순수한 검은 실루엣, 속이 비어 있다 | 거의 검은 실루엣인데, 그림자 속에 얼굴·머리칼·옷깃이 희미하게 칠해져 있다 |
+| 빛 | 윤곽을 따라 도는 균일한 빛 선 | 얼굴 쪽은 뜨거운 진홍, 뒤통수·어깨는 차가운 청록의 가는 테두리 빛. 나머지는 어둠 |
+| 형태 | 기하 도형(뾰족한 머리, 다각형 깃) | 단순한 면 + 붓질한 머리 뭉치와 몇 가닥. 세부는 암시만 |
+| 배경 | 매끈한 한 가지 색 그라데이션 | 한 가지 색(진홍)의 안개, 아래로 갈수록 어둡고, 먼지·세로 긁힘 |
+| 표면 | 깨끗한 벡터 | 무광. 화면 전체에 마른 인쇄물 같은 얼룩·알갱이 |
+| 색 | 거의 단색 + 초록 깃 | 제한된 팔레트 + 포인트 색 하나(초록 앵무새 셔츠) |
+
+한마디로 **원본의 "실루엣 + 테두리 빛 + 포인트 색 하나" 문법은 그대로 두고, 그림자 속을 절제된 붓질로 조금 채우고, 마른 질감을 입힌 네오 누아르 일러스트**다. 그래픽 노블 표지나 영화 포스터 쪽이다. 매체를 뽐내지 않으니 오래 봐도 덜 물린다.
+
+이 초상이 번들거리지 않은 이유도 여기 있다. 옛 초상 틀은 `near-black silhouette`, `faint low-key modeling`, `thin rim light`, `2–3 colors`만 말했고, 젖은 바닥·반사·`much richer detail`이 없었다. 장면이 번들거린 것은 그 낱말들 때문이다.
+
+### 6-2. 타이틀 프롬프트
+
+새 대화에서. 첨부: **① `docs/art-ref/style_you.png` (화풍) ② `docs/art-ref/title_layout.png` (구도)**
+
+```text
+Create an image. Landscape 3:2 (1536×1024).
+Image 1 is the STYLE reference: match its look exactly. Image 2 is only a LAYOUT guide made of flat vector shapes: keep its composition (camera, horizon, and the positions and sizes of the crane, moon, hanging figure, street lamp and standing man), but ignore how it is drawn.
+
+STYLE (as in image 1): a moody neo-noir illustration, like a graphic-novel cover.
+- Low-key: most of the picture is deep shadow; things read mainly as near-black silhouettes against a hazy colored background.
+- Inside the shadows only faint painted modeling: simplified planes, soft brushy edges, a few loose strands and folds. Details are suggested, not rendered.
+- Light arrives as thin, hot rim lights along the edges of the silhouettes, warm on one side and cool on the other; everything else stays dark.
+- The background is soft atmospheric haze, darker toward the bottom, with dust, faint vertical streaks and a dry, speckled, print-like grain over the whole image.
+- A limited palette with one or two small saturated accents.
+- Matte and dry: no glossy highlights, no wet reflections, no photographic textures, no 3D-render look.
+
+SCENE: night at an old harbor quay in a decaying 1950s Southern European port.
+- A tall lattice-steel dock crane has its tower on the right (about 81% across). Its long jib slants up to the LEFT, passes in front of the moon and ends at about 51% across, 20% down, with one small red warning light at the tip.
+- From the jib tip a single cable drops straight down; on it hangs the small dark silhouette of a man, far away (about 30–40% down). Quiet, not graphic.
+- A large pale full moon, veiled in haze, behind the jib (center about 69% across, 31% down).
+- Two smaller, fainter crane silhouettes: one far out near the center, one cut off by the right edge.
+- A low dark far shore a little below the middle (about 58% down) with a sprinkle of tiny lights; dark, matte water in front of it.
+- Foreground: old cobbles that sink into black. One old iron street lamp (lamp at about 60% across, 66% down) makes a small dull amber pool on the ground.
+- Just right of the lamp, a lone man stands with his back to us, looking up at the hanging figure: broad, slightly stooped, rumpled jacket, wide flared trousers, hands in pockets, unruly hair (about 64% across, from 66% to 87% down).
+- The left 40% stays dark, calm and empty for the title and menu. Keep everything important out of the top and bottom 8%.
+
+LIGHT AND COLOR:
+- Sky: deep indigo to blue-black, turning into a crimson haze on the left where light from a neon sign beyond the left edge (about 47% down) seeps in.
+- The moon is the cool light: it draws a thin cyan-white rim along the top of the crane jib and the hanging figure.
+- The lamp is the warm accent: it draws a thin amber rim on the lamp side of the standing man. The red warning light is the other small accent.
+- Ground and water stay dry and matte: no puddles, no mirror reflections, no rain streaks.
+No text, letters, signature or border.
+```
+
+### 6-3. 이어서 보낼 말
+
+| 증상 | 이어서 보낼 말 |
+|---|---|
+| 번들거리거나 사실적이다 | `Less rendered, more like image 1: flatter shapes, more of the figures in near-black silhouette, fewer details, keep the dry grain. No glossy or wet surfaces.` |
+| 너무 어두워 안 읽힌다 | `Keep it dark, but strengthen the thin rim lights so the crane, the hanging figure and the man read clearly at thumbnail size.` |
+| 옛 벡터 그림처럼 매끈하다 | `Paint the inside of the shadows with faint brushy modeling and add image 1's speckled print grain and haze. Keep the positions.` |
+| 바닥이 젖어 보인다 | `Make the ground dry, matte cobblestone; the lamp light is only a dull pool, with no reflections.` |
+| 색이 너무 많다 | `Limit the palette: indigo, black and crimson haze; only the lamp (amber) and the warning light (red) as accents.` |
+
+마음에 드는 결과가 나오면 5장의 3라운드 절차대로 `docs/art-ref/key_art.png`로 넣는다.
