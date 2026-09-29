@@ -7,8 +7,9 @@
 //   node tools/art/import.mjs scene quay_n ~/Downloads/quay_night.png [--x 0.5] [--y 0.5] [--zoom 1]
 //   node tools/art/import.mjs portrait yun ~/Downloads/yun.png [--y 0.45]
 //   node tools/art/import.mjs preview quay_n [그림 파일]
-//     → tools/art/out/preview_quay_n.png : 깜빡이는 광원 자리, 넓은 화면에서 글 칸이 덮는 곳, 휴대폰에서 보이는 범위를 그림 위에 표시
-//       (그림 파일을 주면 그 파일을 자른 결과 위에, 없으면 지금 assets/ 의 그림 위에)
+//     → tools/art/out/preview_quay_n.png : 깜빡이는 광원 자리, 넓은 화면에서 글 칸(타이틀은 제목·메뉴)이 덮는 곳, 휴대폰에서 보이는 범위를 그림 위에 표시
+//       (그림 파일을 주면 그 파일을 자른 결과 위에 그리고 파일 이름을 붙인다: title + ~/Downloads/A1.png → preview_title_A1.png,
+//        이름이 열쇠로 시작하면 그대로: title_A1.png → preview_title_A1.png. 파일이 없으면 지금 assets/ 의 그림 위에)
 // --x --y: 자를 때 남길 가운데(0~1, 기본 0.5). --zoom: 1보다 크면 더 확대해서 자른다.
 // 장면은 1920×1080, 초상은 512×640. 넣은 뒤 npm run build.
 // 주의: npm run art 는 모든 그림을 tools/art 의 코드로 다시 그려 덮어쓴다. 바깥 그림을 넣은 뒤에는 쓰지 말 것(--only 로 필요한 것만).
@@ -82,10 +83,19 @@ if (mode !== 'preview') {
     const W = 1600, H = 900, c = document.createElement('canvas'); c.width = W; c.height = H;
     const x = c.getContext('2d');
     x.drawImage(img, 0, 0, W, H);
-    // 넓은 화면(1600px): 오른쪽 36%는 글 칸이 덮는다
-    const col = W * 0.36;
-    x.fillStyle = 'rgba(0,0,0,0.55)'; x.fillRect(W - col, 0, col, H);
-    x.fillStyle = '#fff'; x.font = 'bold 22px sans-serif'; x.fillText('넓은 화면: 글 칸', W - col + 20, 40);
+    x.font = 'bold 22px sans-serif';
+    if (key === 'title') {
+      // 타이틀에는 글 칸이 없다. 왼쪽에 제목과 메뉴가 놓이고, 게임이 왼쪽을 어둡게 덮는다 (style.css 의 .app.in-title .stage-shade)
+      const g = x.createLinearGradient(0, 0, W, 0);
+      g.addColorStop(0, 'rgba(0,0,0,0.78)'); g.addColorStop(0.38, 'rgba(0,0,0,0.45)'); g.addColorStop(0.62, 'rgba(0,0,0,0)');
+      x.fillStyle = g; x.fillRect(0, 0, W, H);
+      x.fillStyle = '#fff'; x.fillText('넓은 화면: 제목·메뉴', 20, 40);
+    } else {
+      // 넓은 화면(1600px): 오른쪽 36%는 글 칸이 덮는다
+      const col = W * 0.36;
+      x.fillStyle = 'rgba(0,0,0,0.55)'; x.fillRect(W - col, 0, col, H);
+      x.fillStyle = '#fff'; x.fillText('넓은 화면: 글 칸', W - col + 20, 40);
+    }
     // 휴대폰(390×844): 장면은 화면 위 42%, 가로로 초점 둘레만 보인다. 타이틀은 화면 전체(더 좁은 세로 띠)
     const band = (vw, vh, color, label) => {
       const sw = vh * 16 / 9, off = (sw - vw) * (e.focus === undefined ? 0.4 : e.focus);
@@ -108,9 +118,11 @@ if (mode !== 'preview') {
     }
     return c.toDataURL('image/png');
   }, [file ? res.png : dataUrl, entry, key, ANIMATED]);
-  const out = path.join(ROOT, 'tools/art/out', 'preview_' + key + '.png');
+  // 후보 그림 여러 장을 차례로 미리 볼 수 있게, 그림 파일을 주면 그 이름을 붙인다 (title + title_A1.png → preview_title_A1.png)
+  const base = file ? path.basename(file).replace(/\.[^.]+$/, '') : key;
+  const out = path.join(ROOT, 'tools/art/out', 'preview_' + (base === key || base.startsWith(key + '_') ? base : key + '_' + base) + '.png');
   fs.mkdirSync(path.dirname(out), { recursive: true });
   fs.writeFileSync(out, Buffer.from(png.split(',')[1], 'base64'));
-  console.log('미리보기 → ' + path.relative(ROOT, out) + '  (노란 원: 게임이 빛을 얹는 자리, 어두운 오른쪽: 글 칸, 파란 점선: 휴대폰에서 보이는 범위)');
+  console.log('미리보기 → ' + path.relative(ROOT, out) + '  (노란 원: 게임이 빛을 얹는 자리, ' + (key === 'title' ? '어두운 왼쪽: 제목·메뉴' : '어두운 오른쪽: 글 칸') + ', 파란 점선: 휴대폰에서 보이는 범위)');
 }
 await browser.close();

@@ -67,6 +67,8 @@ tools/art/          그림을 그리는 코드 (헤드리스 Chromium에서 캔�
 docs/DESIGN.md      세계관·사건의 진상·플래그 규약 (스포일러 주의)
 docs/SCRIPTING.md   .tl 스크립트 문법
 docs/ART_PROMPTS.md ChatGPT 그림 프롬프트 모음 (장면·초상, 통일성 유지 방법)
+docs/ART_STYLE_TEST.md 화풍 고르기: 타이틀 그림을 화풍 10가지로 그려 비교하는 시험
+docs/art-ref/       그림 프롬프트에 첨부하는 기준 그림 (구도 기준, 확정한 키 아트)
 dist/               빌드 결과 (site/ 웹 배포본, tango-lethe.html 단일 파일)
 .github/workflows/  GitHub Pages 배포 워크플로
 ```
@@ -95,7 +97,7 @@ node tools/art/render.mjs scene quay --variant '{"night":true}'   # 한 장만 t
 ART_FONTS=node_modules/@fontsource npm run art                    # 전부 assets/ 에 (간판 글꼴은 선택)
 ```
 
-ChatGPT 같은 이미지 생성기로 그림을 새로 만들 때는 `docs/ART_PROMPTS.md`를 봅니다. 스타일 바이블, 기준 그림을 만드는 순서, 장면 34장과 초상 32장의 프롬프트, 깜빡이는 광원 자리가 들어 있습니다. 만든 그림은 `tools/art/import.mjs`로 게임 규격(장면 1920×1080, 초상 512×640 WebP)에 맞춰 넣고, 광원 자리가 맞는지 미리보기로 확인합니다. 바깥 그림을 넣은 뒤에는 `npm run art`가 그것을 코드 그림으로 덮어쓰니 쓰지 마세요.
+ChatGPT 같은 이미지 생성기로 그림을 새로 만들 때는 `docs/ART_PROMPTS.md`를 봅니다. 스타일 바이블, 기준 그림을 만드는 순서, 장면 34장과 초상 32장의 프롬프트, 깜빡이는 광원 자리가 들어 있습니다. 지금은 화풍을 다시 고르는 중이라, 그 전에 `docs/ART_STYLE_TEST.md`로 기준 화풍부터 정합니다. 만든 그림은 `tools/art/import.mjs`로 게임 규격(장면 1920×1080, 초상 512×640 WebP)에 맞춰 넣고, 광원 자리가 맞는지 미리보기로 확인합니다. 바깥 그림을 넣은 뒤에는 `npm run art`가 그것을 코드 그림으로 덮어쓰니 쓰지 마세요.
 
 ```bash
 node tools/art/import.mjs scene quay_n ~/Downloads/quay_n.png   # 잘라서 assets/scenes/quay_n.webp 로
