@@ -63,10 +63,12 @@ src/js/ui.js        화면(타이틀·형사 만들기·게임·패널·결말),
 src/css/style.css   스타일
 assets/             렌더된 장면 그림(scenes/)과 초상(portraits/), 광원 위치(art.json)
 tools/              빌드, 검증, 무작위 플레이 시뮬레이터, 소리 검사
-tools/art/          그림을 그리는 코드 (헤드리스 Chromium에서 캔버스로 렌더), 바깥 그림 넣기(import.mjs)
+tools/art/          그림을 그리는 코드 (헤드리스 Chromium에서 캔버스로 렌더), 바깥 그림 넣기·광원 맞추기(import.mjs)
 docs/DESIGN.md      세계관·사건의 진상·플래그 규약 (스포일러 주의)
 docs/SCRIPTING.md   .tl 스크립트 문법
-docs/ART_PROMPTS.md ChatGPT 그림 프롬프트 모음 (장면·초상, 통일성 유지 방법)
+docs/ART_PROMPTS.md ChatGPT 그림 프롬프트 모음 (네오 누아르 화풍: 스타일 바이블, 레퍼런스 사슬, 장면·초상)
+docs/ART_STYLE_TEST.md 화풍 고르기: 타이틀 그림을 화풍 10가지로 그려 비교하는 시험
+docs/art-ref/       그림 프롬프트에 첨부하는 기준 그림 (키 아트, 초상 기준, 3:2 구도 기준 layout/)
 dist/               빌드 결과 (site/ 웹 배포본, tango-lethe.html 단일 파일)
 .github/workflows/  GitHub Pages 배포 워크플로
 ```
@@ -88,17 +90,18 @@ npm run audio      # 소리 검사: 모든 배경음·효과음을 오프라인 
 
 ### 그림
 
-장면과 초상은 손으로 그린 파일이 아니라 코드입니다. `tools/art/lib.js`(빛·안개·반사·실루엣 도구), `scenes*.js`(장소 16곳 + 표제 그림), `portraits.js`(옆얼굴 실루엣 초상)를 `tools/art/render.mjs`가 헤드리스 Chromium에서 1920×1080 캔버스로 그려 `assets/`에 WebP로 저장하고, 광원 위치를 `assets/art.json`에 적습니다. 게임은 그 위치를 읽어 네온·등대·불꽃을 실시간으로 깜박이게 합니다.
+장면과 초상은 처음에 코드로 그렸습니다. `tools/art/lib.js`(빛·안개·반사·실루엣 도구), `scenes*.js`(장소 16곳 + 표제 그림), `portraits.js`(옆얼굴 실루엣 초상)를 `tools/art/render.mjs`가 헤드리스 Chromium에서 1920×1080 캔버스로 그려 `assets/`에 WebP로 저장하고, 광원 위치를 `assets/art.json`에 적습니다. 게임은 그 위치를 읽어 네온·등대·불꽃을 실시간으로 깜박이게 합니다.
 
 ```bash
 node tools/art/render.mjs scene quay --variant '{"night":true}'   # 한 장만 tools/art/out/ 에
 ART_FONTS=node_modules/@fontsource npm run art                    # 전부 assets/ 에 (간판 글꼴은 선택)
 ```
 
-ChatGPT 같은 이미지 생성기로 그림을 새로 만들 때는 `docs/ART_PROMPTS.md`를 봅니다. 스타일 바이블, 기준 그림을 만드는 순서, 장면 34장과 초상 32장의 프롬프트, 깜빡이는 광원 자리가 들어 있습니다. 만든 그림은 `tools/art/import.mjs`로 게임 규격(장면 1920×1080, 초상 512×640 WebP)에 맞춰 넣고, 광원 자리가 맞는지 미리보기로 확인합니다. 바깥 그림을 넣은 뒤에는 `npm run art`가 그것을 코드 그림으로 덮어쓰니 쓰지 마세요.
+지금은 이 그림들을 ChatGPT로 그린 그림으로 바꾸는 중입니다(타이틀이 첫 장). 화풍은 `docs/ART_STYLE_TEST.md`의 시험으로 고른 네오 누아르 일러스트이고, 프롬프트는 `docs/ART_PROMPTS.md`에 있습니다: 스타일 바이블, 기준 그림(`docs/art-ref/`)과 레퍼런스 사슬, 장면 34장과 초상 32장의 프롬프트, 깜빡이는 광원 자리. 만든 그림은 `tools/art/import.mjs`로 게임 규격(장면 1920×1080, 초상 512×640 WebP)에 맞춰 넣고, 생성기가 조금씩 옮겨 그린 광원을 `snap`으로 새 그림에 맞춘 뒤 미리보기로 확인합니다. 바깥 그림을 넣은 뒤에는 `npm run art`가 그것을 코드 그림으로 덮어쓰니 쓰지 마세요.
 
 ```bash
 node tools/art/import.mjs scene quay_n ~/Downloads/quay_n.png   # 잘라서 assets/scenes/quay_n.webp 로
+node tools/art/import.mjs snap quay_n --write                   # 광원 자리를 새 그림의 불빛에 맞춰 art.json 에
 node tools/art/import.mjs preview quay_n                        # 광원 자리·글 칸·휴대폰 범위 표시 → tools/art/out/
 ```
 
